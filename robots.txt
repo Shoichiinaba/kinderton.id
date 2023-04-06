@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap:https://kinderton.id/sitemap.xml
+Sitemap:https://kinderton.id/sitemap_1.xml
