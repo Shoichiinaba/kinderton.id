@@ -18,7 +18,7 @@ class Olah_data extends CI_Controller
 		$this->load->model('m_olah_data');
 	}
 
-	public function index()  
+	public function index()
 	{
 		if ($this->session->userdata("privilage") == 'admin') {
 			$data['_title'] = 'Olah Data';
@@ -215,15 +215,16 @@ class Olah_data extends CI_Controller
 			$fot_produk = $data['upload_data']['file_name'];
 			$texture = $this->input->post('texture');
 			$status_foto = $this->input->post('status-foto');
+			$id_status_foto = $this->input->post('id-status-foto');
 			$uploadedImage = $this->upload->data();
 			if ($status_foto == 'slide') {
 
 				$this->resizeImage_landcape($uploadedImage['file_name']);
-				$insert = $this->m_olah_data->m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto);
+				$insert = $this->m_olah_data->m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto,$id_status_foto);
 				echo json_encode($insert);
 			} else {
 				$this->resizeImage_potrait($uploadedImage['file_name']);
-				$insert = $this->m_olah_data->m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto);
+				$insert = $this->m_olah_data->m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto,$id_status_foto);
 				echo json_encode($insert);
 			}
 		}
@@ -232,7 +233,6 @@ class Olah_data extends CI_Controller
 
 	function edit_foto_produk()
 	{
-
 		$fotlama = $this->input->post('fotlama');
 		unlink('./upload/' . $fotlama);
 		$config['upload_path'] = "./upload";
@@ -242,22 +242,22 @@ class Olah_data extends CI_Controller
 
 		if ($this->upload->do_upload("fot_produk")) {
 			$data = array('upload_data' => $this->upload->data());
-
 			$id_fotpro = $this->input->post('id-fotpro');
 			$id_fotjp = $this->input->post('id-fotjp');
 			$fot_produk = $data['upload_data']['file_name'];
 			$texture = $this->input->post('texture');
 			$status_foto = $this->input->post('status-foto');
+			$id_status_foto = $this->input->post('id-status-foto');
 			$uploadedImage = $this->upload->data();
 
 			if ($status_foto == 'slide') {
 
 				$this->resizeImage_landcape($uploadedImage['file_name']);
-				$insert = $this->m_olah_data->m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto);
+				$insert = $this->m_olah_data->m_edit_foto_produk($id_fotpro,$id_fotjp, $fot_produk, $texture, $status_foto, $id_status_foto);
 				echo json_encode($insert);
 			} else {
 				$this->resizeImage_potrait($uploadedImage['file_name']);
-				$insert = $this->m_olah_data->m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto);
+				$insert = $this->m_olah_data->m_edit_foto_produk($id_fotpro,$id_fotjp, $fot_produk, $texture, $status_foto, $id_status_foto);
 				echo json_encode($insert);
 			}
 		}
@@ -266,12 +266,12 @@ class Olah_data extends CI_Controller
 
 	function edit_fotoproduk()
 	{
-
 		$id_fotpro = $this->input->post('id-fotpro');
 		$id_fotjp = $this->input->post('id-fotjp');
 		$texture = $this->input->post('texture');
 		$status_foto = $this->input->post('status-foto');
-		$result = $this->m_olah_data->m_edit_fotoproduk($id_fotpro, $id_fotjp, $texture, $status_foto);
+		$id_status_foto = $this->input->post('id-status-foto');
+		$result = $this->m_olah_data->m_edit_fotoproduk($id_fotpro, $id_fotjp, $texture, $status_foto, $id_status_foto);
 		echo json_decode($result);
 	}
 	function hapus_foto_produk()

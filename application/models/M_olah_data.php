@@ -108,30 +108,33 @@ class M_olah_data extends CI_Model
         $hasil = $this->db->query("DELETE FROM harga_produk WHERE id_hrg='$id_hrg'");
         return $hasil;
     }
-    function m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto)
+    function m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto, $id_status_foto)
     {
         $data = array(
             'id_fotjp' => $id_fotjp,
             'fotpro' => $fot_produk,
             'texture' => $texture,
             'status_foto' => $status_foto,
+            'id_status_foto' => $id_status_foto,
         );
         $result = $this->db->insert('foto_produk', $data);
         return $result;
     }
 
-    function m_edit_foto_produk($id_fotpro, $id_fotjp, $fot_produk, $texture, $status_foto)
+    function m_edit_foto_produk($id_fotpro, $id_fotjp, $fot_produk, $texture, $status_foto, $id_status_foto)
     {
 
-        $hasil = $this->db->query("UPDATE foto_produk SET id_fotjp='$id_fotjp',fotpro='$fot_produk',texture='$texture',status_foto='$status_foto' WHERE id_fotpro='$id_fotpro'");
+        $hasil = $this->db->query("UPDATE foto_produk SET id_fotjp='$id_fotjp',fotpro='$fot_produk',texture='$texture',status_foto='$status_foto',id_status_foto='$id_status_foto' WHERE id_fotpro='$id_fotpro'");
         return $hasil;
     }
 
-    function m_edit_fotoproduk($id_fotpro, $id_fotjp, $texture, $status_foto)
+    function m_edit_fotoproduk($id_fotpro, $id_fotjp, $texture, $status_foto, $id_status_foto)
     {
-        $hasil = $this->db->query("UPDATE foto_produk SET id_fotjp='$id_fotjp',texture='$texture',status_foto='$status_foto' WHERE id_fotpro='$id_fotpro'");
+        $hasil = $this->db->query("UPDATE foto_produk SET id_fotjp='$id_fotjp',texture='$texture',status_foto='$status_foto',id_status_foto='$id_status_foto' WHERE id_fotpro='$id_fotpro'");
         return $hasil;
     }
+
+
     function m_hapus_foto_produk($id_fotpro)
     {
         $hasil = $this->db->query("DELETE FROM foto_produk WHERE id_fotpro='$id_fotpro'");

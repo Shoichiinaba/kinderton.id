@@ -564,6 +564,31 @@ a.box_news ul {
   a.box_news ul {
     padding: 0;
   }
+  .title {
+    position: relative;
+    font-size: 11px;
+    z-index: 1;
+    overflow: hidden;
+    text-align:center;
+  }
+
+  .title:before {
+    width: 52%;
+    margin-left:-55%;
+  }
+
+  .title:before, .title:after{
+   position: absolute;
+     top: 51%;
+     background-color: #ccc;
+     height: 1px;
+     content: ' ';
+  }
+  .title:after {
+      width: 52%;
+      margin-left:3%;
+  }
+
 }
 a.box_news ul li {
   display: inline-block;
@@ -584,3 +609,30 @@ a.box_news ul li:after {
   content: '-';
   margin: 0 0 0 10px;
 }
+/* footer */
+.title {
+  position: relative;
+  font-size: 30px;
+  z-index: 1;
+  overflow: hidden;
+  text-align:center;
+}
+
+.title:before {
+  width: 52%;
+  margin-left:-55%;
+}
+
+.title:before, .title:after{
+ position: absolute;
+   top: 51%;
+   background-color: #ccc;
+   height: 1px;
+   content: ' ';
+}
+.title:after {
+    width: 52%;
+    margin-left:3%;
+}
+
+/* akhir footer */

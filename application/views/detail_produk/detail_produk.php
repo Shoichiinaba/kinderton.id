@@ -1,6 +1,6 @@
 <main>
     <div class="container margin_30 pt-5rem">
-        <?php 
+        <?php
         foreach ($jenis_produk as $data_jp) {
             $id_jp = $data_jp->id_jp;
         ?>
@@ -16,8 +16,8 @@
                     <p class="jam-akhir-promo" hidden><?php echo $data_jp->jam_akhir_promo; ?></p>
 
                     <?php if ($data_jp->status_produk == 'PROMO') { ?>
-                        <div class="countdown_inner"><span>-<?php echo $promo->diskon; ?>% This offer ends in <span id="countdown-detail"></span></span> 
-                            
+                        <div class="countdown_inner"><span>-<?php echo $promo->diskon; ?>% This offer ends in <span id="countdown-detail"></span></span>
+
                         </div>
                     <?php
                     } else {
@@ -36,12 +36,14 @@
                     <div class="slider">
                         <div class="owl-carousel owl-theme main ">
                             <?php
-                            $sql = "SELECT *FROM foto_produk WHERE id_fotjp = $id_jp ORDER BY id_fotpro DESC";
+                            $sql = "SELECT *FROM foto_produk WHERE id_fotjp = $id_jp ORDER BY id_status_foto ASC";
                             $query = $this->db->query($sql);
                             if ($query->num_rows() > 0) {
                                 foreach ($query->result() as $data_foto) :
                             ?>
-                                    <div style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item-box">
+                                <?php
+                                    if ($data_foto->id_status_foto == '1') { ?>
+                                       <div style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item-box">
                                         <?php
                                         if ($data_foto->texture == '-') {
                                         } else { ?>
@@ -50,6 +52,59 @@
                                         }
                                         ?>
                                     </div>
+                                <?php } ?>
+
+                                <?php
+                                    if ($data_foto->id_status_foto == '2') { ?>
+                                       <div style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item-box">
+                                        <?php
+                                        if ($data_foto->texture == '-') {
+                                        } else { ?>
+                                            <h4 class="label-texture"><?php echo $data_foto->texture; ?></h4>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                <?php } ?>
+
+                                <?php
+                                    if ($data_foto->id_status_foto == '3') { ?>
+                                       <div style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item-box">
+                                        <?php
+                                        if ($data_foto->texture == '-') {
+                                        } else { ?>
+                                            <h4 class="label-texture"><?php echo $data_foto->texture; ?></h4>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                <?php } ?>
+
+                                <?php
+                                    if ($data_foto->id_status_foto == '4') { ?>
+                                       <div style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item-box">
+                                        <?php
+                                        if ($data_foto->texture == '-') {
+                                        } else { ?>
+                                            <h4 class="label-texture"><?php echo $data_foto->texture; ?></h4>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                <?php } ?>
+
+                                <?php
+                                    if ($data_foto->status_foto == 'keunggulan') { ?>
+                                       <div style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item-box">
+                                        <?php
+                                        if ($data_foto->texture == '-') {
+                                        } else { ?>
+                                            <h4 class="label-texture"><?php echo $data_foto->texture; ?></h4>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                <?php } ?>
                             <?php
                                 endforeach;
                             }
@@ -61,12 +116,32 @@
                     <div class="slider-two">
                         <div class="owl-carousel owl-theme thumbs">
                             <?php
-                            $sql = "SELECT *FROM foto_produk WHERE id_fotjp = $id_jp ORDER BY id_fotpro DESC";
+                            $sql = "SELECT *FROM foto_produk WHERE id_fotjp = $id_jp ORDER BY id_status_foto ASC";
                             $query = $this->db->query($sql);
                             if ($query->num_rows() > 0) {
                                 foreach ($query->result() as $data_foto) {
                             ?>
-                                    <div id="texture-<?php echo $data_foto->id_fotpro; ?>" style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item active"></div>
+                                <?php
+                                    if ($data_foto->id_status_foto == '1') { ?>
+                                        <div id="texture-<?php echo $data_foto->id_fotpro; ?>" style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item active"></div>
+                                    <?php } else { ?>
+                                <?php } ?>
+                                <?php
+                                    if ($data_foto->id_status_foto == '2') { ?>
+                                        <div id="texture-<?php echo $data_foto->id_fotpro; ?>" style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item active"></div>
+                                    <?php } else { ?>
+                                <?php } ?>
+                                <?php
+                                    if ($data_foto->id_status_foto == '3') { ?>
+                                        <div id="texture-<?php echo $data_foto->id_fotpro; ?>" style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item active"></div>
+                                    <?php } else { ?>
+                                <?php } ?>
+                                <?php
+                                    if ($data_foto->id_status_foto == '4') { ?>
+                                        <div id="texture-<?php echo $data_foto->id_fotpro; ?>" style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $data_foto->fotpro; ?>);" class="item active"></div>
+                                    <?php } else { ?>
+                                <?php } ?>
+
                             <?php
                                 }
                             }
@@ -79,7 +154,7 @@
             </div>
             <div class="col-md-6">
                 <!-- /page_header -->
-                <div class="prod_info"> 
+                <div class="prod_info">
                     <?php
                     foreach ($jenis_produk as $data_jp) {
                         $id_jp = $data_jp->id_jp;
@@ -87,7 +162,6 @@
                         <h1 id="nm-produk"><?php echo $data_jp->nm_jp; ?></h1>
                         <input type="hidden" id="berat-produk" value="<?php echo $data_jp->berat_produk; ?>">
                         <input type="hidden" id="id-produk-addtocart" value="<?php echo $data_jp->id_jp; ?>">
-                        <!-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> -->
                         <p><small><?php echo $data_jp->kategori; ?> || <?php echo $data_jp->gender; ?></small><br><?php echo $data_jp->desk; ?></p>
                         <div class="prod_options">
                             <div class="row">
@@ -102,9 +176,8 @@
                                                 foreach ($query->result() as $data_texture) {
                                                     if ($data_texture->texture == '-') {
                                                     } else {
-
                                             ?>
-                                                        <option value="<?php echo $data_texture->fotpro; ?>" id="<?php echo $data_texture->id_fotpro; ?>"><?php echo $data_texture->texture; ?></option>
+                                                    <option value="<?php echo $data_texture->fotpro; ?>" id="<?php echo $data_texture->id_fotpro; ?>"><?php echo $data_texture->texture; ?></option>
                                                     <?php
                                                     }
                                                     ?>

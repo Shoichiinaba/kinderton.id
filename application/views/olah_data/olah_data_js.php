@@ -316,6 +316,7 @@
             var val_ceklis_ubah = $('#val-ceklis-ubah').val();
             var id_fotjp = $("#id-jenis-produk-foto").find(':selected').val();
             var status_foto = $("#status-foto").find(':selected').val();
+            var id_status_foto = $("#status-foto").find(':selected').data('id');
             const foto_produk = $('#fot_produk').prop('files')[0];
             if (id_fotjp == '0') {
                 Toast.fire({
@@ -332,8 +333,10 @@
                 formData.append('fot_produk', foto_produk);
                 formData.append('texture', $('#texture').val());
                 formData.append('status-foto', status_foto);
+                formData.append('id-status-foto', id_status_foto);
                 formData.append('fotlama', $('#fotlama').val());
                 if (val_simpan == 'simpan-foto-produk') {
+                //alert('tess')
                     $.ajax({
                         type: 'POST',
                         url: "<?php echo site_url('olah_data/simpan_foto_produk'); ?>",

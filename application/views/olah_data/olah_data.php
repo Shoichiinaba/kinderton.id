@@ -311,12 +311,12 @@
                                                         <label>Status Foto Produk</label>
                                                         <select class="form-control" id="status-foto" name="status_foto" required="true">
                                                             <option value="0">Pilih Status*</option>
-                                                            <option value="slide">Slide</option>
-                                                            <option value="display">Display</option>
-                                                            <option value="detail">Detail</option>
-                                                            <option value="keunggulan">Keunggulan</option>
-                                                            <option value="detail-size">Detail Size</option>
-                                                            <option value="others">Others</option>
+                                                            <option data-id="0" value="slide">Slide</option>
+                                                            <option data-id="0" value="detail">Detail</option>
+                                                            <option data-id="1" value="display">Display</option>
+                                                            <option data-id="2" value="detail-size">Detail Size</option>
+                                                            <option data-id="3" value="keunggulan">Keunggulan</option>
+                                                            <option data-id="4" value="others">Others</option>
                                                         </select>
                                                     </div>
                                                 </div>
