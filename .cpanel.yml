@@ -1,0 +1,13 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/kina3126/public_html/app
+    - /bin/cp -R application $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R system $DEPLOYPATH
+    - /bin/cp .gitignore $DEPLOYPATH
+    - /bin/cp .cpanel.yml $DEPLOYPATH
+    - /bin/cp comproser.json $DEPLOYPATH
+    - /bin/cp contributing.md $DEPLOYPATH
+    - /bin/cp license.txt $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
