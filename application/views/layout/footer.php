@@ -29,7 +29,7 @@
 </footer>
     <footer class="text-muted bg-white">
         <div class="container text-right">
-            <strong>© <a href="">Kinderton.id</a>.</strong> <?= date('Y') ?>. Vers 1.0
+            <strong>© <a href="kinderton.id">Kinderton.id</a>.</strong> <?= date('Y') ?>. Vers 1.0
         </div>
     </footer>
 <!-- end Footer -->
