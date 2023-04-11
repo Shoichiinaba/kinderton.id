@@ -12,12 +12,15 @@
         }
         ?>
     </title>
+    <!-- Meta untuk SEO -->
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes, width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
     <meta name="author" content="Kinderton">
     <meta name="mobile-web-app-capable" content="kinderton">
+    <meta name="description" content="Cari Baju Anak berkualitas terbaik , Baju Couple Anak Termurah ,Produk Lokal Dengan Kualitas Fabric terbaik, Produk & Kualitas Terpercaya">
+    <meta name="keywords" content="Kinderton , Pakaian Anak Terbaik, jual Pakaian Anak Murah Berkualitas, jual Pakaian Coupel Anak Murah, jual Pakaian Anak Online Berkualitas Aman & Terpercaya, Jual Pakaian Anak Coupel Kualitas Terbaik S">
+    <meta name="robots" content="INDEX,FOLLOW">
     <style>
         .opacity-body {
             margin-top: 0;
