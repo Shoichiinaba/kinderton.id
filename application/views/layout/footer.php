@@ -1,98 +1,35 @@
 <!-- Footer Start -->
-
-<footer class="revealed position-relative">
-	<div class="container">
-		<div class="row">
-			<!-- <div class="col-lg-3 col-md-6">
-				<h3 data-target="#collapse_1">Quick Links</h3>
-				<div class="collapse dont-collapse-sm links" id="collapse_1">
-					<ul>
-						<li><a href="about.html">About us</a></li>
-						<li><a href="help.html">Faq</a></li>
-						<li><a href="help.html">Help</a></li>
-						<li><a href="account.html">My account</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="contacts.html">Contacts</a></li>
-					</ul>
-				</div>
-			</div> -->
-			<!-- <div class="col-lg-3 col-md-6">
-				<h3 data-target="#collapse_2">Categories</h3>
-				<div class="collapse dont-collapse-sm links" id="collapse_2">
-					<ul>
-						<li><a href="listing-grid-1-full.html">Clothes</a></li>
-						<li><a href="listing-grid-2-full.html">Electronics</a></li>
-						<li><a href="listing-grid-1-full.html">Furniture</a></li>
-						<li><a href="listing-grid-3.html">Glasses</a></li>
-						<li><a href="listing-grid-1-full.html">Shoes</a></li>
-						<li><a href="listing-grid-1-full.html">Watches</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<h3 data-target="#collapse_3">Contacts</h3>
-				<div class="collapse dont-collapse-sm contacts" id="collapse_3">
-					<ul>
-						<li><i class="ti-home"></i>97845 Baker st. 567<br>Los Angeles - US</li>
-						<li><i class="ti-headphone-alt"></i>+94 423-23-221</li>
-						<li><i class="ti-email"></i><a href="#0">info@allaia.com</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<h3 data-target="#collapse_4">Keep in touch</h3>
-				<div class="collapse dont-collapse-sm" id="collapse_4">
-					<div id="newsletter">
-						<div class="form-group">
-							<input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
-							<button type="submit" id="submit-newsletter"><i class="ti-angle-double-right"></i></button>
-						</div>
-					</div>
-					<div class="follow_us">
-						<h5>Follow Us</h5>
-						<ul>
-							<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/twitter_icon.svg" alt="" class="lazy"></a></li>
-							<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/facebook_icon.svg" alt="" class="lazy"></a></li>
-							<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/instagram_icon.svg" alt="" class="lazy"></a></li>
-							<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/youtube_icon.svg" alt="" class="lazy"></a></li>
-						</ul>
-					</div>
-				</div>
-			</div> -->
-		</div>
-		<hr>
-		<div class="row add_bottom_25">
-			<div class="col-lg-6">
-				<ul class="footer-selector clearfix">
-					<li>
-						<div class="styled-select lang-selector">
-							<select>
-								<option value="English" selected>English</option>
-								<option value="French">French</option>
-								<option value="Spanish">Spanish</option>
-								<option value="Russian">Russian</option>
-							</select>
-						</div>
-					</li>
-					<li>
-						<div class="styled-select currency-selector">
-							<select>
-								<option value="US Dollars" selected>US Dollars</option>
-								<option value="Euro">Euro</option>
-							</select>
-						</div>
-					</li>
-					<li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/cards_all.svg" alt="" width="198" height="30" class="lazy"></li>
-				</ul>
-			</div>
-			<div class="col-lg-6">
-				<ul class="additional_links">
-					<li><a href="#0">Terms and conditions</a></li>
-					<li><a href="#0">Privacy</a></li>
-					<li><span>© 2020 Allaia</span></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+<footer class="revealed position-relative bg-white">
+	<diV class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 panel">
+                <div class="text-center pb-3">
+                    <h4 class="title">WHY CHOOSE KINDERTON</h4>
+                </div>
+                <div class="row text-black">
+                    <div class="col-lg text-center">
+                        <img src="<?= base_url('assets/'); ?>img/ikon baju-04.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
+                        <h4>1. Local Pride</h4>
+                    	<p>100% From Indonesia, 100% for Indonesia 100% Support Indonesia. Made from high-quality Indonesian's Fabric.</p>
+                	</div>
+                    <div class="col-lg text-center">
+                        <img src="<?= base_url('assets/'); ?>img/ikon baju-03.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
+                        <h4>2. Couple Wear</h4>
+                        <p>is better than one, Couple wear for twins</p>
+                    </div>
+                    <div class="col-lg text-center">
+                        <img src="<?= base_url('assets/'); ?>img/ikon baju-06.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
+                        <h4>3. Meaningful Illustrations</h4>
+                        <p>Life is a meaningful Story, so do kinderton.id</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
+    <footer class="text-muted bg-white">
+        <div class="container text-right">
+            <strong>© <a href="">Kinderton.id</a>.</strong> <?= date('Y') ?>. Vers 1.0
+        </div>
+    </footer>
 <!-- end Footer -->
