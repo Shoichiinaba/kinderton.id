@@ -11,11 +11,11 @@
         <div class="row">
 
             <?php
-            $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk, cart, bukti_transfer, user WHERE jenis_produk.id_jp = favorit.produk 
-                AND foto_produk.id_fotpro = favorit.foto_favorit 
-                AND harga_produk.id_hrg = favorit.hrg_favorit 
-                AND favorit.kode_chekout = cart.kode_cart 
-                AND bukti_transfer.kode_pesanan = cart.kode_cart 
+            $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk, cart, bukti_transfer, user WHERE jenis_produk.id_jp = favorit.produk
+                AND foto_produk.id_fotpro = favorit.foto_favorit
+                AND harga_produk.id_hrg = favorit.hrg_favorit
+                AND favorit.kode_chekout = cart.kode_cart
+                AND bukti_transfer.kode_pesanan = cart.kode_cart
                 AND user.id_user = cart.cart_user
                 AND bukti_transfer.kode_pesanan = '$kode_pesanan'";
             $query = $this->db->query($sql);
@@ -115,26 +115,14 @@
             </div>
             <div class="col-lg-5 col-md-5 col-12">
                 <h6>Mode Pembayaran</h6>
-                <ul>
-                    <li>
-                        <span><?php echo $data->mode_pembayaran; ?></span>
-                    </li>
-                </ul>
-                <h6>Bukti transfer</h6>
                 <div class="border-detail-pesanan p-1">
                     <div class="thumb_cart">
-                        <a target="_blank" href="<?php echo base_url('upload/bukti_transfer'); ?>/<?php echo $data->foto_bukti; ?>">
-                            <img src="<?php echo base_url('upload/bukti_transfer'); ?>/<?php echo $data->foto_bukti; ?>" class="lazy" alt="Image">
-                        </a>
+                            <img src="<?php echo base_url('assets/'); ?>img/pay.png" class="lazy" alt="Image">
                     </div>
                     <ul class="pl-6rem">
                         <li>
-                            <span class="text-bold">A.N</span>
-                            <span class="font-family-cursive">: <?php echo $data->an_pengirim; ?></span>
-                        </li>
-                        <li>
                             <span class="text-bold">Transaksi Bank</span>
-                            <span class="font-family-cursive">: <?php echo $data->bank; ?></span>
+                            <span class="font-family-cursive">: <?php echo $data->mode_pembayaran;; ?></span>
                         </li>
                         <li>
                             <span class="text-bold">Nominal</span>

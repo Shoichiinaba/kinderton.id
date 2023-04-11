@@ -10,7 +10,7 @@
                     <div class="col pl-1">
                         <span class="float-right text-danger font-size-xs"><?php echo $data->status_pembayaran; ?></span>
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                             AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -30,7 +30,7 @@
                 <div id="coll<?php echo $data->id_cart; ?>" class="collapse " data-parent="#accordion-blm-byr">
                     <div class="row">
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                             AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -228,7 +228,7 @@
                     <div class="col pl-1">
                         <span class="float-right text-warning font-size-xs"><?php echo $data->status_pembayaran; ?></span>
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                             AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -248,7 +248,7 @@
                 <div id="coll<?php echo $data->id_cart; ?>" class="collapse " data-parent="#accordion-sdh-byr">
                     <div class="row">
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                                 AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -343,20 +343,14 @@
                             </div>
                             <div class="col-lg-4">
                                 <h6>Mode Pembayaran</h6>
-                                <ul>
-                                    <li>
-                                        <span><?php echo $data->mode_pembayaran; ?></span>
-                                    </li>
-                                </ul>
-                                <h6>Data Pembayaran</h6>
                                 <div class="border-detail-pesanan p-1">
-                                    <div class="thumb_cart">
-                                            <img src="<?php echo base_url('upload/'); ?>icon/success.png" width="48" height="48" class="lazy" alt="Image">
-                                    </div>
+                                        <div class="thumb_cart">
+                                            <img src="<?php echo base_url('assets/'); ?>img/pay.png" class="lazy" alt="Image">
+                                        </div>
                                     <ul class="pl-6rem">
                                         <li>
                                             <span class="text-bold">Transaksi Bank</span>
-                                            <span class="font-family-cursive">: <?php echo $data->bank; ?></span>
+                                            <span class="font-family-cursive">: <?php echo $data->mode_pembayaran; ?></span>
                                         </li>
                                         <li>
                                             <span class="text-bold">Nominal</span>
@@ -404,7 +398,7 @@
                     <div class="col pl-1">
                         <span class="float-right text-primary font-size-xs"><?php echo $data->status_pembayaran; ?></span>
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                             AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -426,7 +420,7 @@
                 <div id="coll<?php echo $data->id_cart; ?>" class="collapse " data-parent="#accordion-brg-kms">
                     <div class="row">
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                                 AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -462,7 +456,6 @@
                         ?>
                     </div>
                     <div class="container">
-
                         <div class="row pr-3">
                             <div class="col-lg-4">
                                 <h6>Pesanan</h6>
@@ -520,22 +513,16 @@
                             </div>
                             <div class="col-lg-4">
                                 <h6>Mode Pembayaran</h6>
-                                <ul>
-                                    <li>
-                                        <span><?php echo $data->mode_pembayaran; ?></span>
-                                    </li>
-                                </ul>
-                                <h6>Status Pembayaran</h6>
                                 <div class="border-detail-pesanan p-1">
                                     <div class="thumb_cart">
-                                        <a>
-                                            <img src="<?php echo base_url('upload/icon/success.png'); " class="lazy" alt="Image">
-                                        </a>
+                                    <div class="thumb_cart">
+                                        <img src="<?php echo base_url('assets/'); ?>img/pay.png" class="lazy" alt="Image">
+                                    </div>
                                     </div>
                                     <ul class="pl-6rem">
                                         <li>
                                             <span class="text-bold">Transaksi Bank</span>
-                                            <span class="font-family-cursive">: <?php echo $data->bank; ?></span>
+                                            <span class="font-family-cursive">: <?php echo $data->mode_pembayaran; ?></span>
                                         </li>
                                         <li>
                                             <span class="text-bold">Nominal</span>
@@ -583,7 +570,7 @@
                     <div class="col pl-1">
                         <span class="float-right text-success font-size-xs"><?php echo $data->status_pembayaran; ?></span>
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                             AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -605,7 +592,7 @@
                 <div id="coll<?php echo $data->id_cart; ?>" class="collapse " data-parent="#accordion-dikirim">
                     <div class="row">
                         <?php
-                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk 
+                        $sql = "SELECT * FROM favorit, jenis_produk, foto_produk, harga_produk WHERE jenis_produk.id_jp = favorit.produk
                                 AND foto_produk.id_fotpro = favorit.foto_favorit AND harga_produk.id_hrg = favorit.hrg_favorit AND favorit.kode_chekout = $data->kode_cart";
                         $query = $this->db->query($sql);
                         if ($query->num_rows() > 0) {
@@ -641,7 +628,6 @@
                         ?>
                     </div>
                     <div class="container">
-
                         <div class="row pr-3">
                             <div class="col-lg-4">
                                 <h6>Pesanan</h6>
@@ -699,18 +685,10 @@
                             </div>
                             <div class="col-lg-4">
                                 <h6>Mode Pembayaran</h6>
-                                <ul>
-                                    <li>
-                                        <span><?php echo $data->mode_pembayaran; ?></span>
-                                    </li>
-                                </ul>
-                                <h6>Bukti Transfer</h6>
                                 <div class="border-detail-pesanan p-1">
-                                    <div class="thumb_cart">
-                                        <a target="_blank" href="<?php echo base_url('upload/bukti_transfer'); ?>/<?php echo $data->foto_bukti; ?>">
-                                            <img src="<?php echo base_url('upload/bukti_transfer'); ?>/<?php echo $data->foto_bukti; ?>" class="lazy" alt="Image">
-                                        </a>
-                                    </div>
+                                        <div class="thumb_cart">
+                                            <img src="<?php echo base_url('assets/'); ?>img/pay.png" class="lazy" alt="Image">
+                                        </div>
                                     <ul class="pl-6rem">
                                         <li>
                                             <span class="text-bold">A.N</span>
@@ -718,7 +696,7 @@
                                         </li>
                                         <li>
                                             <span class="text-bold">Transaksi Bank</span>
-                                            <span class="font-family-cursive">: <?php echo $data->bank; ?></span>
+                                            <span class="font-family-cursive">: <?php echo $data->mode_pembayaran; ?></span>
                                         </li>
                                         <li>
                                             <span class="text-bold">Nominal</span>
