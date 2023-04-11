@@ -89,7 +89,7 @@
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;padding-top:16px">
-                                                                                    Copyright © 2022 Kinderton. All rights reserved.
+                                                                                    Copyright © <?= date('Y') ?> Kinderton. All rights reserved.
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>

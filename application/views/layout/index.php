@@ -2,22 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Ansonika"> 
     <title>
 
         <?php
         if (isset($_title)) {
             echo $_title;
         } else {
-            echo 'Dashboard';
+            echo 'Situs Jual Pakaian Anak Lokal Terlengkap, Berkualitas &amp; Terpercaya | Kinderton';
         }
         ?>
     </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="Kinderton">
+    <meta name="mobile-web-app-capable" content="kinderton">
     <style>
         .opacity-body {
             margin-top: 0;
@@ -28,41 +28,30 @@
             background: #0000008c;
         }
         .loader-container{
-            z-index: 200; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            background-color:white; 
-            opacity:0.6; 
-            position:absolute; 
-            height:100%; 
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:white;
+            opacity:0.6;
+            position:absolute;
+            height:100%;
             width: 100%;
         }
     </style>
     <!-- Favicons-->
     <link rel="shortcut icon" href="<?php echo base_url('assets'); ?>/img/ikon-logo-kinderton.png" type="image/x-icon" />
-    <!-- <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png"> -->
-    <!-- <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png"> -->
-
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <!-- BASE CSS -->
     <link href="<?php echo base_url('assets'); ?>/css/adminlte.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('assets'); ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <!-- <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/libs/select2/css/select2.min.css"> -->
-    <!-- <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/libs/select2-bootstrap4-theme/select2-bootstrap4.min.css"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/libs/select2-4.0.6-rc.1/dist/css/select2.min.css">
-
     <!-- daterange picker -->
     <link href="<?php echo base_url('assets'); ?>/libs/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('assets'); ?>/css/style.css" rel="stylesheet" />
-
     <!-- SPECIFIC CSS -->
-
-    <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="<?php echo base_url('assets'); ?>/libs/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <link href="<?php echo base_url('assets'); ?>/css/home_1.css" rel="stylesheet" />
     <link href="<?php echo base_url('assets'); ?>/css/product_page.css" rel="stylesheet">
@@ -292,7 +281,7 @@
                     return;
                 }
             }
-            
+
             $('#loader-add-tocart').show();
             $('#total-pembayaran').html($('#total-addtocart').text());
             $.ajax({
@@ -552,7 +541,7 @@
             $('#btn-beli-sekarang').hide();
             $('#buat-pesanan-addtocart').addClass('btn-disabled-b-pesanan').attr('disabled', true);
             $('#data_modal_addtocart').load('<?php echo site_url('Favorit/data_favorit'); ?>');
-        }); 
+        });
 
         $('#btn-cart').click(function(e) {
             $('#data_modal_addtocart').load('<?php echo site_url('Cart/data_cart'); ?>');
@@ -624,7 +613,7 @@
             decimalCharacter: ',',
             decimalCharacterAlternative: '.',
             decimalPlaces: 0,
-            watchExternalChanges: true //!!!        
+            watchExternalChanges: true //!!!
         };
 
         new AutoNumeric('#hrg-awal', autoNumericOption);

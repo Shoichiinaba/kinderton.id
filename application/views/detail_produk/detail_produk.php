@@ -280,11 +280,8 @@
                         <?php else : ?>
                             <a href="#" class="btn-favorit-produk" data-id-produk="<?php echo $data_jp->id_jp; ?>" data-foto-produk="<?php echo $data_foto->fotpro; ?>"><i class="ti-heart"></i> <span>Tambah ke favorit</span></a>
                         <?php endif ?>
-
-                        <!-- <a href="#"><i class="ti-heart"></i><span>Add to Wishlist</span></a> -->
                     </div>
                 </div>
-
                 <!-- /product_actions -->
             </div>
         </div>
@@ -293,11 +290,6 @@
     <!-- /container -->
 
     <div class="container margin_60_35">
-        <!-- <div class="main_title">
-            <h2>Related</h2>
-            <span>Products</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-        </div> -->
         <div class="owl-carousel owl-theme products_carousel bg-dashboard">
             <?php
             $sql = "SELECT * FROM jenis_produk WHERE status_produk = 'HOT' OR status_produk = 'NEW' OR status_produk = 'PROMO'";
@@ -380,57 +372,10 @@
                                         }
                                         ?>
                                     </div>
-                                    <!-- <script>
-                                        var x = setInterval(function() {
-                                            var countDownDate = new Date("<?php echo $row->tgl_akhir_promo; ?> <?php echo $row->jam_akhir_promo; ?>");
-
-                                            // Dapatkan tanggal dan waktu hari ini
-                                            var now = new Date().getTime();
-                                            // Temukan jarak antara sekarang dan tanggal hitung mundur
-                                            var distance = countDownDate - now;
-
-                                            // Perhitungan waktu untuk hari, jam, menit dan detik
-                                            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                                            // Keluarkan hasil dalam elemen dengan id = "demo"
-                                            document.getElementById("countdown<?php echo $id_jp; ?>").innerHTML = days + "D " + hours + ":" +
-                                                minutes + ":" + seconds + "";
-                                            //Jika hitungan mundur selesai, tulis beberapa teks
-                                            if (distance < 0) {
-                                                clearInterval(x);
-                                                document.getElementById("countdown<?php echo $id_jp; ?>").innerHTML = "EXPIRED";
-                                                if ($('#countdown<?php echo $id_jp; ?>').text() == 'EXPIRED') {
-                                                    // alert('ya')
-                                                    var id_jp = '<?php echo $id_jp; ?>';
-                                                    let formData = new FormData();
-                                                    formData.append('id-jp', id_jp);
-                                                    $.ajax({
-                                                        type: 'POST',
-                                                        url: "<?php echo site_url('olah_data/expired_promo'); ?>",
-                                                        data: formData,
-                                                        cache: false,
-                                                        processData: false,
-                                                        contentType: false,
-                                                        success: function(msg) {
-                                                            $('.data-dashboard').load('<?php echo site_url('Dashboard/data_dashboard'); ?>');
-
-                                                        },
-                                                        error: function() {
-                                                            alert("Data Gagal Diupload");
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }, 1000);
-                                    </script> -->
                             <?php
                                 }
                             }
                             ?>
-
                             <ul>
                                 <?php if (!$this->session->userdata('is_login')) : ?>
                                     <li><a href="#" class="tooltip-1" data-toggle="modal" data-target="#modal-login" data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>

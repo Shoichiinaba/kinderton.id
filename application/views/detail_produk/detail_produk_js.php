@@ -1,13 +1,9 @@
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script> -->
-<script>
-
-</script> 
-<script>
+ <script>
     // $(document).ready(function() {
     $('#loader-add-tocart').hide();
     $('#alert-make-checkout').hide();
     $('#btn-beli-sekarang').hide();
- 
+
     $('#btn-addtocart').click(function() {
         $('#alert-make-checkout').hide();
         $('#btn-beli-sekarang').hide();
@@ -43,7 +39,6 @@
             src: "<?php echo base_url('upload'); ?>/" + val_foto_texture
         });
     });
-
 
     $('.increase-btn-addtocart').click(function() {
         $('.quantity').val(parseInt($('.quantity').val()) + 1);
@@ -88,8 +83,6 @@
             $('.old-price-addtocart').text('Rp' + data_hrg_awal);
         }
     };
-
-
     function subtotal_total() {
         // var test = removeCommas('150.000') * 2;
         // alert(addCommas(test))
@@ -100,12 +93,10 @@
         // $('#total-addtocart').text(addCommas(total));
         var subtotal = parseFloat(removeCommas($('.new-price-addtocart').html())) * $('.quantity').val();
         $('#subtotal-addtocart').html(addCommas(subtotal));
-        
+
         var total = parseFloat(removeCommas($('#subtotal-addtocart').html())) + parseFloat(removeCommas($('#ongkir-addtocart').html()));
         var price = $('.new-price-addtocart').html();
         $('#total-addtocart').html(addCommas(total));
-
-
         function addCommas(nStr) {
             nStr += '';
             var x = nStr.split(',');
@@ -124,8 +115,6 @@
             return nStr.split('.').join("");
         }
     }
-
-
 
     function berat_kg() {
 
@@ -192,7 +181,6 @@
             });
         }
     }
-
 
     function show_loader() {
         // $("#loader").addClass("loader");

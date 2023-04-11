@@ -1,5 +1,4 @@
 <div class="row small-gutters">
-
     <?php
     foreach ($data_produk as $row) {
         $id_jp = $row->id_jp;
@@ -75,18 +74,15 @@
                                     <script>
                                         var x = setInterval(function() {
                                             var countDownDate = new Date("<?php echo $row->tgl_akhir_promo; ?> <?php echo $row->jam_akhir_promo; ?>");
-
                                             // Dapatkan tanggal dan waktu hari ini
                                             var now = new Date().getTime();
                                             // Temukan jarak antara sekarang dan tanggal hitung mundur
                                             var distance = countDownDate - now;
-
                                             // Perhitungan waktu untuk hari, jam, menit dan detik
                                             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                                             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                                             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                                             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
                                             // Keluarkan hasil dalam elemen dengan id = "demo"
                                             document.getElementById("countdown<?php echo $id_jp; ?>").innerHTML = days + "D " + hours + ":" +
                                                 minutes + ":" + seconds + "";
@@ -108,7 +104,6 @@
                                                         contentType: false,
                                                         success: function(msg) {
                                                             $('.data-dashboard').load('<?php echo site_url('Dashboard/data_dashboard'); ?>');
-
                                                         },
                                                         error: function() {
                                                             alert("Data Gagal Diupload");
@@ -130,7 +125,6 @@
                     }
                 }
                 ?>
-
                 <ul>
                     <?php if (!$this->session->userdata('is_login')) : ?>
                         <li><a href="#" class="tooltip-1" data-toggle="modal" data-target="#modal-login" data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -157,7 +151,6 @@
         sweetalert();
         // alert('ya');
     });
-
     function sweetalert() {
         Swal.fire({
             // title: 'Error!',
@@ -169,7 +162,6 @@
             window.location.assign("<?php echo base_url('konfrim_akun'); ?>");
 
         })
-
     };
     $('.btn-favorit-produk').click(function() {
         $('.navbar-bottom').addClass("opened");
@@ -188,7 +180,6 @@
             success: function(data) {
                 // alert(data);
                 $('#data-addto-favorit').html(data);
-
             },
             error: function() {
                 alert("Data Gagal Diupload");

@@ -100,7 +100,6 @@
         <?php
         }
         ?>
-
     </ul>
     <!--/banners_grid -->
     <div class="container margin_60_35 bg-dashboard pt-3 pb-3">
@@ -135,7 +134,6 @@
                                         <?php
                                         }
                                         ?>
-
                                     </div>
                                     <a class="btn_1" href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>" role="button">Shop Now</a>
                                 </div>

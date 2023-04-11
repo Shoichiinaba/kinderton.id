@@ -1,9 +1,5 @@
 <?php $this->load->view('layout/alert/_alert') ?>
 <header id="navbar" class="version_1 z-index-5">
-
-   <!-- /main_header -->
-   <!-- <div class="main_header"></div> -->
-
    <div class="main_header main_nav Sticky bg-kinderton max-height-4rem">
       <div class="container pr-3">
          <div class="row small-gutters">

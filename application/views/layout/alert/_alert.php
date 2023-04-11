@@ -17,7 +17,7 @@
                 title: '<?= $this->session->flashdata('error') ?>'
             })
         <?php } ?>
-        
+
         <?php if ($this->session->flashdata('success')) { ?>
 
             Toast.fire({

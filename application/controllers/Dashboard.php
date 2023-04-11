@@ -14,9 +14,7 @@ class Dashboard extends CI_Controller
 
 	function index()
 	{
-		$data['_title'] = 'Dashboard';
-		// $data['_menu'] = 'dashboard'; //for menu
-		// $data['_submenu'] = 'dashboard'; //for submenu
+		// $data['_title'] = 'Dashboard';
 		$data['_script'] = 'dashboard/index_js';
 		$data['_view'] = 'dashboard/index';
 		$data['data_ketegori'] = $this->m_dashboard->m_data_kategori();

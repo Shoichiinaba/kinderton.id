@@ -10,7 +10,6 @@ foreach ($query->result() as $data_user) :
 // echo $data_user->nm_user;
 endforeach;
 // if ($query->num_rows() > 0) {
-
 $kota_asal = '398';
 // $kota_tujuan = '21';
 $kota_tujuan = $data_user->id_kota;
@@ -44,8 +43,7 @@ $provinsiasal = $data['rajaongkir']['origin_details']['province'];
 $kotatujuan = $data['rajaongkir']['destination_details']['city_name'];
 $provinsitujuan = $data['rajaongkir']['destination_details']['province'];
 $berat = $data['rajaongkir']['query']['weight'] / 1000;
-
-?> 
+?>
 <div class="panel panel-default text-left">
     <!-- <div class="col-lg-6 col-md-6 col-12"> -->
 
@@ -113,7 +111,6 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
                 foreach ($data['rajaongkir']['results'][0]['costs'] as $value) {
                     echo "<tr>";
                     echo "<td>" . $value['service'] . "</td>";
-
                     foreach ($value['cost'] as $tarif) {
                         // echo "<td align='left'>Rp " . number_format($tarif['value'], 0, ',', '.') . "</td>";
                         echo "<td align='left'><span class=''>Rp.<strong class='hrg-layanan-" . $value['service'] . "'>" . number_format($tarif['value'], 0, ',', '.') . "</strong></span></td>";
@@ -127,7 +124,6 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
                         echo "</div>";
                         echo "</td>";
                     }
-
                     echo "</tr>";
                 }
                 ?>
@@ -142,7 +138,6 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
         $('#berat-addtocart').text($('.cek-berat').text());
         $('#tes-total').text($('.cek-berat').text());
         // btn_disabled_b_pesanan();
-
         $('.layanan').click(function(e) {
             $('.layanan').not(this).prop('checked', false);
             var layanan = $(this).data('layanan');
@@ -158,7 +153,6 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
                 } else {
                     $('#total-addtocart').text(addCommas(total));
                 }
-                
             } else {
                 $('#layanan-kurir').val('');
                 $('#etd').val('');
@@ -172,7 +166,6 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
             }
             btn_disabled_b_pesanan();
         });
-
         $('.btn-ubah-alamat').click(function(e) {
             // alert('ya');
             var id_kota = $(this).data('id-kota');
@@ -190,9 +183,7 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
             $('.tabel-alamat').hide();
             $('.btn-ubah-alamat').hide();
             $('.form-edit-alamat').removeAttr('hidden', true);
-
         });
-
         $('.btn-simpan-edit-alamat').click(function(e) {
             e.preventDefault();
             // alert('ya');
@@ -241,15 +232,12 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
                 error: function() {
                     alert("Data Gagal Diupload");
                 }
-
             });
             $('#ongkir').text('0,00');
             var total = parseFloat(removeCommas($('#allsubtotal').text())) + parseFloat(removeCommas($('#ongkir').text()));
             $('#total').text(addCommas(total));
             $('.form-edit-alamat').attr('hidden', true);
-
         });
-
         $('.btn-batal-edit-alamat').click(function(e) {
             $('.tabel-alamat').show(300);
             $('.btn-ubah-alamat').show(300);
@@ -259,7 +247,6 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
             placeholder: 'Pilih kota/kabupaten tujuan',
             language: "id"
         });
-
         $.ajax({
             url: "<?php echo site_url('Data_kota/kota_tujuan'); ?>",
             cache: false,
@@ -268,14 +255,12 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
             success: function(data) {
                 // alert(data)
                 $("select#kota_tujuan").html(data);
-
             },
             error: function() {
                 alert("Data Gagal Diupload");
             }
         });
     });
-
     function btn_disabled_b_pesanan() {
         if ($('#ongkir-addtocart').html() == '0,00') {
             $('#buat-pesanan-addtocart').addClass('btn-disabled-b-pesanan').attr('disabled', true);
@@ -283,21 +268,18 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
             $('#buat-pesanan-addtocart').removeClass('btn-disabled-b-pesanan').removeAttr('disabled', true);
         }
     }
-
     function show_loader() {
         // $("#loader").addClass("loader");
         $("#loader").show();
         $('.cek-ongkir').hide();
         //event.preventDefault();
     }
-
     function hide_loader() {
         // $("#loader").removeClass("loader");
         $("#loader").hide(300);
         $('.cek-ongkir').show();
         //event.preventDefault();
     }
-
     function addCommas(nStr) {
         nStr += '';
         var x = nStr.split(',');
@@ -309,9 +291,7 @@ $berat = $data['rajaongkir']['query']['weight'] / 1000;
         }
         return x1 + x2;
     }
-
     function removeCommas(nStr) {
-
         return nStr.split('.').join("");
     }
 </script>
