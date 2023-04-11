@@ -11,7 +11,6 @@ class Olah_data extends CI_Controller
 	public $image_lib;
 	public $session;
 
-
 	function __construct()
 	{
 		parent::__construct();
@@ -22,12 +21,11 @@ class Olah_data extends CI_Controller
 	{
 		if ($this->session->userdata("privilage") == 'admin') {
 			$data['_title'] = 'Olah Data';
-			// $data['_menu'] = 'dashboard'; //for menu
-			// $data['_submenu'] = 'dashboard'; //for submenu
 			$data['_script'] = 'olah_data/olah_data_js';
 			$data['_view'] = 'olah_data/olah_data';
 			$data['jenis_produk'] = $this->m_olah_data->m_list_jenis_produk();
 			$this->load->view('layout/index', $data);
+			$this->load->view('layout/footer_adm', $data);
 		} else {
 			redirect(base_url(''));
 		}
