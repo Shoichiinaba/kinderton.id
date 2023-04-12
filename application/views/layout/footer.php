@@ -18,7 +18,7 @@
                         <p>is better than one, Couple wear for twins</p>
                     </div>
                     <div class="col-lg text-center">
-                        <img src="<?= base_url('assets/'); ?>img/ikon baju-06.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
+                        <img src="<?= base_url('assets/'); ?>img/ikon-logo-kinderton.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
                         <h4>3. Meaningful Illustrations</h4>
                         <p>Life is a meaningful Story, so do kinderton.id</p>
                     </div>
