@@ -8,12 +8,12 @@
                 </div>
                 <div class="row text-black">
                     <div class="col-lg text-center">
-                        <img src="<?= base_url('assets/'); ?>img/ikon baju-04.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
+                        <img src="<?= base_url('assets/'); ?>img/lokal.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
                         <h4>1. Local Pride</h4>
                     	<p>100% From Indonesia, 100% for Indonesia 100% Support Indonesia. Made from high-quality Indonesian's Fabric.</p>
                 	</div>
                     <div class="col-lg text-center">
-                        <img src="<?= base_url('assets/'); ?>img/ikon baju-03.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
+                        <img src="<?= base_url('assets/'); ?>img/couple.png" alt="" class="owl-lazy size-logo-slide fa-duotone fa-shirt fa-beat"></a>
                         <h4>2. Couple Wear</h4>
                         <p>is better than one, Couple wear for twins</p>
                     </div>
