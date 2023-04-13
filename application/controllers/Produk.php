@@ -19,6 +19,7 @@ class Produk extends CI_Controller
         $data['_view'] = 'produk/produk';
         $data['data_produk'] = $this->m_produk->m_data_produk($get_data);
         $this->load->view('layout/index', $data);
+        $this->load->view('layout/footer', $data);
     }
     function category()
     {
