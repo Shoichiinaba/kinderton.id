@@ -64,9 +64,9 @@
                                     <span class="font-size-xs pr-2"><?php echo ($jumlah->num_rows()); ?> terjual</span>
                                 </div>
                             </div>
-                            <!-- <a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>">
+                            <a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>">
                                 <h3><?php echo $row->nm_jp; ?></h3>
-                            </a> -->
+                            </a>
                             <div class="price_box">
                                 <?php if ($row->status_produk == 'PROMO') { ?>
                                     <span class="new_price">Rp.<?php echo $harga->hrg_diskon; ?></span>
