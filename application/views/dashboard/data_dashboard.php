@@ -64,9 +64,9 @@
                                     <span class="font-size-xs pr-2"><?php echo ($jumlah->num_rows()); ?> terjual</span>
                                 </div>
                             </div>
-                            <a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>">
+                            <!-- <a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>">
                                 <h3><?php echo $row->nm_jp; ?></h3>
-                            </a>
+                            </a> -->
                             <div class="price_box">
                                 <?php if ($row->status_produk == 'PROMO') { ?>
                                     <span class="new_price">Rp.<?php echo $harga->hrg_diskon; ?></span>
@@ -128,14 +128,14 @@
                 <ul>
                     <?php if (!$this->session->userdata('is_login')) : ?>
                         <li><a href="#" class="tooltip-1" data-toggle="modal" data-target="#modal-login" data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                        <li><a href="#" class="tooltip-1" data-toggle="modal" data-target="#modal-login" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                     <?php else : ?>
                         <?php if ($this->session->userdata('status_user') == '1') { ?>
                             <li><a href="#" class="tooltip-1 btn-favorit-produk" data-id-produk="<?php echo $row->id_jp; ?>" data-foto-produk="<?php echo $foto->fotpro; ?>" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
                             <li><a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         <?php } else { ?>
                             <li><a href="#" class="tooltip-1 btn-favorit-produk-konfemail" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                            <li><a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                            <li><a href="#" class="tooltip-1 btn-cart-produk-konfemail" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         <?php } ?>
                     <?php endif ?>
                 </ul>
@@ -181,9 +181,24 @@
                 // alert(data);
                 $('#data-addto-favorit').html(data);
             },
-            error: function() {
-                alert("Data Gagal Diupload");
-            }
         });
     });
+</script>
+<!-- Konfirmasi akun cart -->
+<script>
+    $('.btn-cart-produk-konfemail').click(function(e) {
+        sweetalert();
+        // alert('ya');
+    });
+    function sweetalert() {
+        Swal.fire({
+            // title: 'Error!',
+            text: 'Please activate your account',
+            icon: 'error',
+            confirmButtonText: 'Konfrimasi'
+        })
+        $('.swal2-confirm').click(function(e) {
+            window.location.assign("<?php echo base_url('konfrim_akun'); ?>");
+        })
+    };
 </script>

@@ -15,7 +15,7 @@ class More_info extends CI_Controller
 		// $data['_script'] = 'more_info/more_info_js';
 		$data['_view'] = 'more_info/more_info';
 		$this->load->view('layout/index', $data);
-		$this->load->view('layout/footer', $data);
+		$this->load->view('layout/footer');
 	}
 
 }

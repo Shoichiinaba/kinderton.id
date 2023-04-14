@@ -71,9 +71,9 @@
                      if ($this->session->userdata("status_user") == '0') {
                      ?>
                         <li class="float-right list-none">
-                           <a href="#" class="ml-3 a-header-icon a-header-icon-user" data-toggle="dropdown"><span class="user-acaunt mr-1"><?= $this->session->userdata("nm_user") ?></span> <i class="fa-regular fa-user menu-icon-header"></i>
+                           <a href="#" class="a-header-icon a-header-icon-user" data-toggle="dropdown"><span class="user-acaunt mr-2"><?= $this->session->userdata("nm_user") ?></span> <i class="fa-regular fa-user menu-icon-header"></i>
                            </a>
-                           <div id="dropdown-user" class="menu-dropdown dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                           <div id="dropdown-user" class="menu-dropdown dropdown-menu dropdown-menu-lg dropdown-menu-right mr-sm-5">
                               <div class="dropdown-divider"></div>
                               <a href="<?php echo base_url('user'); ?>" class="dropdown-item">
                                  <i class="fa-regular fa-user"></i> <?= $this->session->userdata("nm_user") ?>

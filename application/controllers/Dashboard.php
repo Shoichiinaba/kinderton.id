@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller
 		$data['_view'] = 'dashboard/index';
 		$data['data_ketegori'] = $this->m_dashboard->m_data_kategori();
 		$this->load->view('layout/index', $data);
-		$this->load->view('layout/footer', $data);
+		$this->load->view('layout/footer');
 	}
 	function data_dashboard()
 	{
