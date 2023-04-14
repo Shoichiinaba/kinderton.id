@@ -87,9 +87,11 @@
                                                         <label>Kategori</label>
                                                         <select class="form-control" id="kategori">
                                                             <option disabled selected value="0">Pilih Kategori*</option>
-                                                            <option value="Longue-Wear">Longue Wear</option>
-                                                            <option value="Formal-Wear">Formal Wear</option>
-                                                            <option value="Modest-Wear">Modest Wear</option>
+                                                            <?php
+                                                                foreach ($kategori as $row) {
+		                                                        echo "<option value='".$row->nm_kategori."'>".$row->nm_kategori."</option>";
+		                                                         }
+		                                                    ?>
                                                         </select>
                                                     </div>
                                                 </div>

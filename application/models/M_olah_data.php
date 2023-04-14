@@ -38,6 +38,14 @@ class M_olah_data extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    function m_get_kategori()
+    {
+        $this->db->select('*');
+        $this->db->from('kategori');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
     function m_simpan_jenis_produk($data)
     {

@@ -17,6 +17,15 @@ class M_dashboard extends CI_Model
         $this->db->from('jenis_produk');
         $this->db->where('foto_produk.status_foto', 'display');
         $this->db->join('foto_produk', 'foto_produk.id_fotjp = jenis_produk.id_jp');
+        $this->db->group_by('kategori');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function m_kategori()
+    {
+        $this->db->select('*');
+        $this->db->from('kategori');
+        $this->db->order_by('id_kategori','desc');
         $query = $this->db->get();
         return $query->result();
     }
