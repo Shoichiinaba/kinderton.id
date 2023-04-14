@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-12">
       <h2>More Information</h2>
-      <p class="text-justify">Untuk mendapatkan informasi lebih lanjut & Lengkap tentang Kinderton.id dan layanan yang Kami tawarkan. Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami. Bisa klik tombol dbawah</p>
+      <p class="text-justify">Untuk mendapatkan informasi lebih lanjut & Lengkap tentang Kinderton.id dan layanan yang Kami tawarkan. Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami. Bisa klik tombol dibawah
+      </p>
         <div class="row">
             <div class="text-center col-lg-6">
                 <a href="<?php echo base_url('dashboard'); ?>">
