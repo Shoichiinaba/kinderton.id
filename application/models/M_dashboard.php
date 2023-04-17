@@ -29,6 +29,17 @@ class M_dashboard extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    function slide_kategori()
+    {
+        $this->db->select('*');
+        $this->db->from('jenis_produk');
+        $this->db->join('foto_produk', 'foto_produk.id_fotjp = jenis_produk.id_jp');
+        $this->db->where('foto_produk.status_foto', 'slide');
+        $this->db->order_by('RAND()');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
     function m_data_produk()
     {
         $this->db->select('*');

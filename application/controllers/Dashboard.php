@@ -14,11 +14,11 @@ class Dashboard extends CI_Controller
 
 	function index()
 	{
-		// $data['_title'] = 'Dashboard';
 		$data['_script'] = 'dashboard/index_js';
 		$data['_view'] = 'dashboard/index';
 		$data['data_ketegori'] = $this->m_dashboard->m_data_kategori();
 		$data['ketegori'] = $this->m_dashboard->m_kategori();
+		$data['slide'] = $this->m_dashboard->slide_kategori();
 		$this->load->view('layout/index', $data);
 		$this->load->view('layout/footer');
 	}

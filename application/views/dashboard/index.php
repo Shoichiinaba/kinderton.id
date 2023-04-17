@@ -2,27 +2,25 @@
     <div id="carousel-home">
         <div class="owl-carousel owl-theme">
             <?php
-            $sql = "SELECT * FROM jenis_produk, foto_produk WHERE foto_produk.id_fotjp = jenis_produk.id_jp AND foto_produk.status_foto = 'slide'  ORDER BY RAND()";
-            $query = $this->db->query($sql);
-            if ($query->num_rows() > 0) {
-                foreach ($query->result() as $slide) {
-                    $nm_jp = $slide->nm_jp;
+                foreach ($slide as $slides) {
+                    $nm_jp = $slides->nm_jp;
                     $nm_produk = preg_replace("![^a-z0-9]+!i", "-", $nm_jp);
             ?>
             <div class="owl-slide cover"
-                style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $slide->fotpro; ?>);">
+                style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $slides->fotpro; ?>);">
                 <div class="opacity-mask d-flex align-items-center">
                     <div class="container">
                         <div class="row justify-content-center justify-content-md-end">
                             <div class="col-lg-6 static">
                                 <div class="slide-text text-right white">
                                     <h2 class="owl-slide-animated owl-slide-title">
-                                        <?php echo $slide->kategori; ?><br><?php echo $slide->nm_jp; ?></h2>
-                                    <p class="owl-slide-animated owl-slide-subtitle">
-                                    </p>
-                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                            href="<?php echo base_url(); ?>detail_produk/data/<?php echo $slide->id_jp; ?>/<?php echo $nm_produk; ?>"
-                                            role="button">Shop Now</a></div>
+                                        <?php echo $slides->kategori; ?><br>
+                                        <p class="owl-slide-animated owl-slide-subtitle">
+                                        </p>
+                                        <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
+                                                href="<?php echo base_url(); ?>produk/category/<?php echo $slides->kategori; ?>"
+                                                class="img_container" role="button">Shop Now</a>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +30,6 @@
             <!--/owl-slide-->
             <?php
                 }
-            }
             ?>
         </div>
         <div id="icon_drag_mobile"></div>
