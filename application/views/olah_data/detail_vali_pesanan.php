@@ -45,7 +45,10 @@
                         ?>
                 <hr class="hr-cart">
             </div>
-
+            <?php
+                endforeach;
+                }
+            ?>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-12">
@@ -258,10 +261,6 @@
         </div>
     </div>
 </div>
-<?php
-    endforeach;
-        }
-?>
 <input type=" text" class="action-vali-pesanan" value="Dikirim" hidden>
 <?php
 $sql = "SELECT * FROM user WHERE privilage='admin'";
