@@ -102,7 +102,6 @@ class M_olah_data extends CI_Model
             ->set('jam_akhir_promo', $jam_akhir_promo)
             ->where('id_jp', $id_hrg_produk)
             ->update('jenis_produk');
-        // $jenis = $this->db->query("UPDATE jenis_produk SET status_produk='$status_produk' WHERE id_jp='$id_hrg_produk'");
 
         $hasil = $this->db->query("UPDATE harga_produk SET hrg_awal='$hrg_awal',diskon='$diskon',hrg_diskon='$hrg_diskon',
         all_size='$all_size',small='$small',medium='$medium',large='$large',extra_large='$extra_large',extra2_large='$extra2_large' WHERE id_hrg='$id_hrg'");
