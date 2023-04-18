@@ -6,7 +6,7 @@
                     $nm_jp = $slides->nm_jp;
                     $nm_produk = preg_replace("![^a-z0-9]+!i", "-", $nm_jp);
             ?>
-            <div class="owl-slide cover col-xs-12"
+            <div class="owl-slide cover"
                 style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $slides->fotpro; ?>);">
                 <div class="opacity-mask d-flex align-items-center">
                     <div class="container">

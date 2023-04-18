@@ -4647,7 +4647,7 @@ body.modal-open .mm-slideout {
 	position: relative;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1080px) {
 
 	#carousel-home .owl-carousel .owl-slide,
 	#carousel-home-2 .owl-carousel .owl-slide {
