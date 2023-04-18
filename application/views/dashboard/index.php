@@ -6,7 +6,7 @@
                     $nm_jp = $slides->nm_jp;
                     $nm_produk = preg_replace("![^a-z0-9]+!i", "-", $nm_jp);
             ?>
-            <div class="owl-slide cover"
+            <div class="owl-slide cover col-xs-12"
                 style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $slides->fotpro; ?>);">
                 <div class="opacity-mask d-flex align-items-center">
                     <div class="container">
@@ -35,7 +35,6 @@
         <div id="icon_drag_mobile"></div>
     </div>
     <!--/carousel-->
-
     <?php
     $get_data = $this->uri->segment(2);
     echo $get_data
