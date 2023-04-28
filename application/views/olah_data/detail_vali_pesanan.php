@@ -39,7 +39,6 @@
                         } else {
                         ?>
                 <span class="text-danger">Rp. <?php echo $data->hrg_awal; ?></span>
-
                 <?php
                         }
                         ?>
@@ -241,7 +240,6 @@
                             data-kode-cart="<?php echo $data->kode_cart; ?>" value="">Kirim Pesanan</button>
                     </div>
                 </div>
-
                 <?php
                 } else if ($data->status_pembayaran == 'Dikirim' || $data->status_pembayaran == 'Selesai Dikirim') {
                 ?>
@@ -382,7 +380,6 @@ function action_vali_pesanan() {
         $('#form-ket-tolak').hide();
         $('#btn-acc').hide(200);
         $('#btn-tolak').hide(200);
-
     }
 
     if ($('#no-resi').val() == '') {
