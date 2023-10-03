@@ -30,7 +30,7 @@ class Chekout extends CI_Controller
         try{
             $rawRequest = file_get_contents("php://input");
             $request = json_decode($rawRequest, true);
-            
+
             $_id = $request['id'];
             $_externalId = $request['external_id'];
             $_userId = $request['user_id'];
@@ -39,15 +39,15 @@ class Chekout extends CI_Controller
             $_paidAt = $request['paid_at'];
             $_paymentChannel = $request['payment_channel'];
             $_paymentDestination = $request['payment_destination'];
-            
+
             $status = 'Belum Bayar';
             if($_status == 'PAID'){
                 $status = 'Sudah Bayar';
                 $date_convert = Carbon::parse($_paidAt);
-                
+
                 $date = $date_convert->format('m-d-Y');
                 $time = $date_convert->format('H:i:s');
-                
+
                 $this->db
                 ->set('mode_pembayaran', $_paymentChannel)
                 ->set('total_pembayaran', $_paidAmount)
@@ -56,7 +56,7 @@ class Chekout extends CI_Controller
                     'kode_cart' => $_externalId
                 ])
                 ->update('cart');
-                
+
                 $transfer_exists = $this->db->get_where('bukti_transfer', [
                     'kode_pesanan' => $_externalId
                 ])->num_rows();
@@ -109,7 +109,7 @@ class Chekout extends CI_Controller
                 'detail' => [],
             ]));
         }
-        
+
     }
 
     function create_invoice(){
@@ -168,7 +168,7 @@ class Chekout extends CI_Controller
             ];
 
             $createInvoice = Invoice::create($param_invoice);
-            
+
             $dateConvert = Carbon::parse($createInvoice['expiry_date']);
 
             $data_cart['no_pembayaran'] = $createInvoice['id'];
@@ -272,7 +272,7 @@ class Chekout extends CI_Controller
             'ongkir' => $this->input->post('ongkir'),
             'subtotal' => $this->input->post('subtotal'),
             'total_pembayaran' => $this->input->post('total_bayar'),
-            'status_pembayaran' => 'Belum Bayar', 
+            'status_pembayaran' => 'Belum Bayar',
         );
 
         $this->m_chekout->m_simpan_pesanan($id_favorit, $kode_chekout, $data_cart, $action, $data_favorit);
@@ -321,14 +321,14 @@ class Chekout extends CI_Controller
         }
         echo json_encode($query->num_rows());
 ?>
-        <script>
-            if (<?= $query->num_rows(); ?> == '0') {
-                $('.notif-pesanan').text('');
-            } else {
-                // $('.notif-pesanan').removeAttr('hidden', true);
-            }
-        </script>
-    <?php
+<script>
+if (<?= $query->num_rows(); ?> == '0') {
+    $('.notif-pesanan').text('');
+} else {
+    // $('.notif-pesanan').removeAttr('hidden', true);
+}
+</script>
+<?php
     }
     function notif_pesanan_dikirim()
     {
@@ -339,13 +339,13 @@ class Chekout extends CI_Controller
         }
         echo json_encode($query->num_rows());
     ?>
-        <script>
-            if (<?= $query->num_rows(); ?> == '0') {
-                $('.notif-pesanan_dikirim').text('');
-            } else {
-                // $('.notif-pesanan').removeAttr('hidden', true);
-            }
-        </script>
+<script>
+if (<?= $query->num_rows(); ?> == '0') {
+    $('.notif-pesanan_dikirim').text('');
+} else {
+    // $('.notif-pesanan').removeAttr('hidden', true);
+}
+</script>
 <?php
     }
     function pesanan_dikirim()

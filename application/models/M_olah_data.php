@@ -28,6 +28,15 @@ class M_olah_data extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    function m_list_foto_banner()
+    {
+        $this->db->select('*');
+        $this->db->from('foto_banner');
+        // $this->db->join('kategori', 'foto_banner.id_kategori = kategori.id_kategori');
+        $this->db->order_by('id_banner', 'desc');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     function m_list_harga_produk()
     {
@@ -115,6 +124,7 @@ class M_olah_data extends CI_Model
         $hasil = $this->db->query("DELETE FROM harga_produk WHERE id_hrg='$id_hrg'");
         return $hasil;
     }
+
     function m_simpan_foto_produk($id_fotjp, $fot_produk, $texture, $status_foto, $id_status_foto)
     {
         $data = array(
@@ -147,11 +157,57 @@ class M_olah_data extends CI_Model
         $hasil = $this->db->query("DELETE FROM foto_produk WHERE id_fotpro='$id_fotpro'");
         return $hasil;
     }
+
     function m_expired_promo($id_jp)
     {
         $cart = $this->db->set('status_produk', 'Lainnya')
             ->where('id_jp', $id_jp)
             ->update('jenis_produk');
         return $cart;
+    }
+
+    function m_simpan_banner($id_banner, $kategori, $foto, $layout)
+    {
+        $data = array(
+            'id_banner' => $id_banner,
+            'kategori' => $kategori,
+            'foto' => $foto,
+            'layout' => $layout,
+        );
+        $result = $this->db->insert('foto_banner', $data);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    function m_edit_fotobanner($id_banner, $kategori, $layout)
+    {
+        $hasil = $this->db->query("UPDATE foto_banner SET id_banner='$id_banner', kategori='$kategori',layout='$layout' WHERE id_banner='$id_banner'");
+
+        if ($hasil) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function m_edit_banner($id_banner, $kategori, $foto, $layout)
+    {
+        $hasil = $this->db->query("UPDATE foto_banner SET id_banner='$id_banner', kategori='$kategori',foto='$foto',layout='$layout'");
+
+        if ($hasil) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function m_hapus_foto_banner($id_banner)
+    {
+        $hasil = $this->db->query("DELETE FROM foto_banner WHERE id_banner='$id_banner'");
+        return $hasil;
     }
 }

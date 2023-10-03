@@ -27,7 +27,7 @@
                                 <?php
                                 }
                                 ?>
-                                <!-- <a href="<?php echo base_url('detail_produk'); ?>/<?php echo $row->nm_jp; ?>"> -->
+
                                 <a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>">
                                     <?php
                                     $sql = "SELECT * FROM foto_produk WHERE id_fotjp = $id_jp AND status_foto = 'display' ORDER BY RAND() LIMIT 1";

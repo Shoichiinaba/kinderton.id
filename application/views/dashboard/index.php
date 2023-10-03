@@ -1,73 +1,134 @@
 <main>
-    <div id="carousel-home">
-        <div class="owl-carousel owl-theme">
-            <?php
-                foreach ($slide as $slides) {
-                    $nm_jp = $slides->nm_jp;
-                    $nm_produk = preg_replace("![^a-z0-9]+!i", "-", $nm_jp);
-            ?>
-            <div class="owl-slide cover"
-                style="background-image: url(<?php echo base_url('upload'); ?>/<?php echo $slides->fotpro; ?>);">
-                <div class="opacity-mask d-flex align-items-center">
-                    <div class="container">
-                        <div class="row justify-content-center justify-content-md-end">
-                            <div class="col-lg-6 static">
-                                <div class="slide-text text-right white">
-                                    <h2 class="owl-slide-animated owl-slide-title">
-                                        <?php echo $slides->kategori; ?><br>
-                                        <p class="owl-slide-animated owl-slide-subtitle">
-                                        </p>
-                                        <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                                href="<?php echo base_url(); ?>produk/category/<?php echo $slides->kategori; ?>"
-                                                class="img_container" role="button">Shop Now</a>
-                                        </div>
+    <!-- tampilan dekstop -->
+    <div class="d-md-block d-none">
+        <div id="carousel-home" style="height: 32rem;">
+            <div class="owl-carousel owl-theme">
+                <?php
+                    foreach ($slide as $slides) {
+                        $kategoris = preg_replace("![^a-z0-9]+!i", "-", $slides->kategori);
+                ?>
+                <div class="owl-slide">
+                    <img class="slider-image" src="<?php echo base_url('upload/banner'); ?>/<?php echo $slides->foto; ?>"
+                        alt="Slider Image">
+
+                    <div class="opacity-mask d-flex align-items-center">
+                        <div class="container">
+                            <div class="row justify-content-center justify-content-md-end">
+                                <div class="col-lg-6 static">
+                                    <div class="slide-text text-right white">
+                                        <h2 class="owl-slide-animated owl-slide-title">
+                                            <?php echo $slides->kategori; ?><br>
+                                            <p class="owl-slide-animated owl-slide-subtitle">
+                                            </p>
+                                            <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
+                                                    href="<?php echo base_url(); ?>produk/category/<?php echo $kategoris; ?>"
+                                                    class="img_container" role="button">Shop Now</a>
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--/owl-slide-->
+                <?php
+                    }
+                ?>
             </div>
-            <!--/owl-slide-->
-            <?php
-                }
-            ?>
+            <div id="icon_drag_mobile"></div>
         </div>
-        <div id="icon_drag_mobile"></div>
-    </div>
-    <!--/carousel-->
-    <?php
-    $get_data = $this->uri->segment(2);
-    echo $get_data
-    ?>
-    <ul id="banners_grid" class="clearfix row">
         <?php
-    foreach ($ketegori as $row) {
-        $nm_kategori = $row->nm_kategori;
+        $get_data = $this->uri->segment(2);
+        echo $get_data
         ?>
+    </div>
+    <!-- akhir tampilan dekstop -->
+    <!-- tampilan mobile -->
+    <div class="d-md-none">
+    <div id="carousel-home" style="height: 11rem;">
+            <div class="owl-carousel owl-theme">
+                <?php
+                    foreach ($slide as $slides) {
+                        $kategoris = preg_replace("![^a-z0-9]+!i", "-", $slides->kategori);
+                ?>
+                <div class="owl-slide mt-5 pt-3">
+                    <a href="<?php echo base_url(); ?>produk/category/<?php echo $kategoris; ?>">
+                    <img class="slider-image" src="<?php echo base_url('upload/banner'); ?>/<?php echo $slides->foto; ?>"
+                        alt="Slider Image">
+                    </a>
+                </div>
+                <!--/owl-slide-->
+                <?php
+                    }
+                ?>
+            </div>
+            <div id="icon_drag_mobile"></div>
+        </div>
         <?php
-    foreach ($data_ketegori as $data) {
-        if($data->kategori == $nm_kategori){
+        $get_data = $this->uri->segment(2);
+        echo $get_data
+        ?>
+    </div>
+    <!-- akhir tampilan mobile -->
+
+<!--Etalase -->
+<!-- dekstop -->
+<div class="d-md-block d-none">
+    <ul id="banners_grid" class="clearfix row mt-1 pt-1">
+        <?php
+    foreach ($etalase as $etalases) {
             ?>
-        <li class="col-lg-3 col-md-3 col-sm-3 p-0">
-            <a href="<?php echo base_url(); ?>produk/category/<?php echo $data->kategori; ?>" class="img_container">
-                <img src="<?php echo base_url('upload'); ?>/<?php echo $data->fotpro; ?>"
-                    data-src="<?php echo base_url('upload'); ?>/<?php echo $data->fotpro; ?>" alt="" class="lazy">
-                <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <h3><?php echo $data->kategori; ?></h3>
+        <li class="col-lg-4 col-md-3 col-sm-12 p-0">
+            <a href="<?php echo base_url(); ?>produk/gender/<?php echo $etalases->kategori; ?>" class="img_container"
+                style="height: 30rem;">
+
+                <img src=" <?php echo base_url('upload'); ?>/<?php echo $etalases->foto; ?>"
+                    data-src="<?php echo base_url('upload/banner'); ?>/<?php echo $etalases->foto; ?>" alt="" class="lazy">
+                <div class="short_info opacity-mask" data-opacity-mask="rgba(0,0,0, 0.2)">
+                    <h3><?php echo $etalases->kategori; ?></h3>
                     <div><span class="btn_1">Shop Now</span></div>
                 </div>
             </a>
         </li>
         <?php
-                }else{}
-                ?>
-        <?php
-    }
-    ?>
-        <?php
     }
     ?>
     </ul>
+</div>
+<!-- dekstop -->
+
+<!-- mobile -->
+<div class="d-md-none">
+    <div class="mt-0 mb-0" id="carousel-home">
+        <ul id="banners_grid">
+            <div class="owl-carousel owl-theme">
+                <?php
+                    foreach ($etalase as $etalases) {
+                ?>
+                    <li class="col-lg-4 col-md-3 col-sm-12 p-0">
+                        <a href="<?php echo base_url(); ?>produk/gender/<?php echo $etalases->kategori; ?>" class="img_container"
+                            style="height: 25rem;">
+
+                            <img src=" <?php echo base_url('upload'); ?>/<?php echo $etalases->foto; ?>"
+                                data-src="<?php echo base_url('upload/banner'); ?>/<?php echo $etalases->foto; ?>" alt="" class="lazy">
+                            <div class="short_info opacity-mask" data-opacity-mask="rgba(0,0,0, 0.2)">
+                                <h3><?php echo $etalases->kategori; ?></h3>
+                                <div><span class="btn_1">Shop Now</span></div>
+                            </div>
+                        </a>
+                    </li>
+                <?php
+                    }
+                ?>
+            </div>
+            <div id="icon_drag_mobile"></div>
+        </ul>
+    </div>
+</div>
+<!-- akhir mobile -->
+
+
+
     <!--/banners_grid -->
     <div class="container margin_60_35 bg-dashboard pt-3 pb-3">
         <div class="data-dashboard"></div>
@@ -75,37 +136,19 @@
     </div>
     <!-- /container -->
     <?php
-    $sql = "SELECT * FROM jenis_produk, harga_produk, foto_produk WHERE jenis_produk.id_jp = harga_produk.id_hrg_produk AND foto_produk.id_fotjp = jenis_produk.id_jp AND jenis_produk.status_produk IN ('PROMO','NEW','HOT') AND foto_produk.status_foto = 'display' ORDER BY RAND() LIMIT 1";
+    $sql = "SELECT * FROM quots, foto_produk LIMIT 1";
     $query = $this->db->query($sql);
     if ($query->num_rows() > 0) {
         foreach ($query->result() as $row) {
-            $nm_jp = $row->nm_jp;
-            $nm_produk = preg_replace("![^a-z0-9]+!i", "-", $nm_jp);
     ?>
-    <div class="featured lazy" data-bg="url(<?php echo base_url('upload'); ?>/<?php echo $row->fotpro; ?>)">
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+    <div class="featured lazy" data-bg="url(<?php echo base_url('upload/quots'); ?>/<?php echo $row->gambar; ?>)">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(225,129,49, 0.4)">
             <div class="container margin_60">
                 <div class="row justify-content-center justify-content-md-start">
-                    <div class="col-lg-6 wow" data-wow-offset="150">
-                        <h3><?php echo $row->nm_jp; ?></h3>
-                        <h5 class="text-light"><?php echo $row->kategori; ?>||<?php echo $row->gender; ?></h5>
-                        <div class="feat_text_block">
-                            <div class="price_box">
-                                <?php if ($row->status_produk == 'PROMO') { ?>
-                                <span class="new_price">Rp.<?php echo $row->hrg_diskon; ?></span>
-                                <span class="old_price">Rp.<?php echo $row->hrg_awal; ?></span>
-                                <?php
-                                        } else {
-                                        ?>
-                                <span class="new_price">Rp.<?php echo $row->hrg_awal; ?></span>
-                                <?php
-                                        }
-                                        ?>
-                            </div>
-                            <a class="btn_1"
-                                href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>"
-                                role="button">Shop Now</a>
-                        </div>
+                    <div class="col-lg-12 wow text-center" data-wow-offset="150">
+                        <h2><img class="img-fluid mb-4 mr-0 pr-1 col-lg-2" src="upload/quots/Petik.png" alt=""
+                                                    style="max-height: 20px; width: auto;"><?php echo $row->judul_quots; ?><img class="img-fluid mb-4 pl-1 ml-0 col-lg-2" src="upload/quots/Petikb.png" alt=""
+                                                style="max-height: 20px; width: auto;"></h2>
                     </div>
                 </div>
             </div>

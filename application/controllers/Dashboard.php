@@ -17,11 +17,14 @@ class Dashboard extends CI_Controller
 		$data['_script'] = 'dashboard/index_js';
 		$data['_view'] = 'dashboard/index';
 		$data['data_ketegori'] = $this->m_dashboard->m_data_kategori();
-		$data['ketegori'] = $this->m_dashboard->m_kategori();
-		$data['slide'] = $this->m_dashboard->slide_kategori();
+		// $data['ketegori'] = $this->m_dashboard->m_kategori();
+		// $data['slide'] = $this->m_dashboard->slide_kategori();
+		$data['etalase'] = $this->m_dashboard->etalase();
+		$data['slide'] = $this->m_dashboard->slide();
 		$this->load->view('layout/index', $data);
 		$this->load->view('layout/footer');
 	}
+
 	function data_dashboard()
 	{
 		$data['_view'] = 'dashboard/data_dashboard';
@@ -29,6 +32,7 @@ class Dashboard extends CI_Controller
 		$data['data_hrg_produk'] = $this->m_dashboard->m_data_hrg_produk();
 		$this->load->view('dashboard/data_dashboard', $data);
 	}
+
 	function foto_nav()
 	{
 		$data['_view'] = 'layout/foto_resp_nav';
