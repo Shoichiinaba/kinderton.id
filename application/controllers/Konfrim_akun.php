@@ -23,9 +23,9 @@ class Konfrim_akun extends CI_Controller
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'akunaktivasikinderton@gmail.com',  // Email gmail
-            'smtp_pass'   => 'kxklkmfymlpihywd',  // Password gmail
+            'smtp_host' => 'mail.kinderton.id',
+            'smtp_user' => 'aktivasi@kinderton.id',  // Email gmail
+            'smtp_pass'   => 'kinderton123!',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -34,7 +34,7 @@ class Konfrim_akun extends CI_Controller
         $email_to_user = $this->input->post('gmail');
 
         $this->load->library('email', $config);
-        $this->email->from('akunaktivasikinderton@gmail.com', 'Kinderton');
+        $this->email->from('aktivasi@kinderton.id', 'Kinderton');
         $this->email->to($email_to_user);
         $this->email->subject('Aktivasi Akun Kinderton');
         $data_email = array(

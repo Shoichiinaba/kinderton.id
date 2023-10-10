@@ -12,9 +12,9 @@ class Send_email extends CI_Controller
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'akunaktivasikinderton@gmail.com',  // Email gmail
-            'smtp_pass'   => 'kxklkmfymlpihywd',  // Password gmail
+            'smtp_host' => 'mail.kinderton.id',
+            'smtp_user' => 'aktivasi@kinderton.id',  // Email gmail
+            'smtp_pass'   => 'kinderton123!',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -25,16 +25,16 @@ class Send_email extends CI_Controller
         $this->load->library('email', $config);
 
         // Email dan nama pengirim
-        $this->email->from('akunaktivasikinderton@gmail.com', 'Kinderton');
+        $this->email->from('aktivasi@kinderton.id', 'Kinderton');
 
         // Email penerima
-        $this->email->to('akunaktivasikinderton@gmail.com'); // Ganti dengan email tujuan
+        $this->email->to('aktivasi@kinderton.id'); // Ganti dengan email tujuan
 
         // Lampiran email, isi dengan url/path file
         // $this->email->attach('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.orami.co.id%2Fmagazine%2Fkartun-anak-yang-mendidik&psig=AOvVaw2gXK9JDYmKMCv3oz92HvwW&ust=1664341553038000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPDh_86ZtPoCFQAAAAAdAAAAABAD');
 
         // Subject email
-        $this->email->subject('Kirim Email dengan SMTP Gmail CodeIgniter | MasRud.com');
+        $this->email->subject('Aktivasi akun kinderton shop  | Kinderton.id');
         $data = array(
             'userName' => 'Kinderton'
         );

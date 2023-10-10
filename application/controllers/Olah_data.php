@@ -76,7 +76,6 @@ class Olah_data extends CI_Controller
 		$data['_view'] = 'olah_data/jenis_produk';
 		$data['jenis_produk'] = $this->m_olah_data->m_list_jenis_produk();
 		$this->load->view('olah_data/jenis_produk', $data);
-		// $this->load->view('layout/index', $data);
 	}
 
 	function foto_produk()
@@ -91,15 +90,12 @@ class Olah_data extends CI_Controller
 	function select_foto_produk()
 	{
 		$select_produk = $this->input->post('select-nm-produk');
-		// $select_produk = '155';
 		$data = $this->m_olah_data->m_select_foto_produk($select_produk);
 		echo json_encode($data);
-		// echo $select_produk;
 	}
+
 	function list_select_foto_produk()
 	{
-		// $select_produk = $this->input->post('select-nm-produk');
-		// $select_produk = '155';
 		$data['_script'] = 'olah_data/olah_data_js';
 		$data['_view'] = 'olah_data/foto_produk';
 		$data['jenis_produk'] = $this->m_olah_data->m_list_jenis_produk();
@@ -342,140 +338,163 @@ class Olah_data extends CI_Controller
 	}
 
 	function foto_banner(){
+		$data['_script'] = 'olah_data/olah_data_js';
 		$data['_view'] = 'olah_data/foto_banner';
+		$data['lay_etalase'] = $this->m_olah_data->m_get_kategori_etalase();
 		$data['kat_select'] = $this->m_olah_data->m_get_kategori();
 		$data['foto_banner'] = $this->m_olah_data->m_list_foto_banner();
-		$data['_script'] = 'olah_data/olah_data_js';
 		$this->load->view('olah_data/foto_banner', $data);
 	}
 
-	function simpan_foto_banner()
+	public function resize_potrait($filename)
 	{
-		$config['upload_path'] = "./upload/banner";
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['encrypt_name'] = TRUE;
-
-		$this->load->library('upload', $config);
-
-		if ($this->upload->do_upload("foto")) {
-			$data = array('upload_data' => $this->upload->data());
-
-			$id_banner = $this->input->post('id-banner');
-			$kategori = $this->input->post('kategory');
-			$foto = $data['upload_data']['file_name'];
-			$layout = $this->input->post('layout');
-			$uploadedImage = $this->upload->data();
-			// debugin
-			// var_dump('id-banner');
-			// var_dump('kategory');
-			// var_dump('file_name');
-			// var_dump('layout');
-
-			if ($layout == 'banner') {
-
-				$this->resizeImage_landcape($uploadedImage['file_name']);
-				$insert = $this->m_olah_data->m_simpan_banner($id_banner, $kategori, $foto, $layout);
-				echo json_encode($insert);
-
-			} else {
-
-				$this->resizeImage_potrait($uploadedImage['file_name']);
-				$insert = $this->m_olah_data->m_simpan_banner($id_banner, $kategori, $foto, $layout);
-				echo json_encode($insert);
-			}
-
+		$source_path = 'upload/banner/' . $filename;
+		$target_path = 'upload/banner/';
+		$config = [
+			'image_library' => 'gd2',
+			'source_image' => $source_path,
+			'new_image' => $target_path,
+			'maintain_ratio' => TRUE,
+			'quality' => '60%',
+			'width' => '1667',
+			'height' => '2500',
+		];
+		$this->load->library('image_lib', $config);
+		if (!$this->image_lib->resize()) {
+			return [
+				'status' => 'error compress',
+				'message' => $this->image_lib->display_errors()
+			];
 		}
-		exit;
+		$this->image_lib->clear();
+		return 1;
 	}
 
-	// function edit_foto_banner()
-	// {
-	// 	$fotlama = $this->input->post('fotlama');
-	// 	unlink('./upload/' . $fotlama);
-	// 	$config['upload_path'] = "./upload/banner";
-	// 	$config['allowed_types'] = 'gif|jpg|png';
-	// 	$config['encrypt_name'] = TRUE;
-	// 	$this->load->library('upload', $config);
+	public function resize_landcape($filename)
+	{
+		$source_path = 'upload/banner/' . $filename;
+		$target_path = 'upload/banner/';
+		$config = [
+			'image_library' => 'gd2',
+			'source_image' => $source_path,
+			'new_image' => $target_path,
+			'maintain_ratio' => TRUE,
+			'quality' => '60%',
+			'width' => '1667',
+			'height' => '2500',
+		];
+		$this->load->library('image_lib', $config);
+		if (!$this->image_lib->resize()) {
+			return [
+				'status' => 'error compress',
+				'message' => $this->image_lib->display_errors()
+			];
+		}
+		$this->image_lib->clear();
+		return 1;
+	}
 
-	// 	if ($this->upload->do_upload("fot_produk")) {
-	// 		$data = array('upload_data' => $this->upload->data());
-	// 		$id_banner = $this->input->post('id-banner');
-	// 		$foto_banner = $data['upload_data']['file_name'];
-	// 		$kategori = $this->input->post('kategory');
-	// 		$layout = $this->input->post('layout');
-	// 		$uploadedImage = $this->upload->data();
+	public function simpan_foto_banner()
+	{
+		$config['upload_path'] = "./upload/banner";
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encrypt_name'] = TRUE;
 
-	// 		if ($layout == 'banner') {
+        $this->load->library('upload', $config);
 
-	// 			$this->resizeImage_landcape($uploadedImage['file_name']);
-	// 			$insert = $this->m_olah_data->m_edit_banner($id_banner, $kategori, $foto, $layout);
-	// 			echo json_encode($insert);
-	// 		} else {
-	// 			$this->resizeImage_potrait($uploadedImage['file_name']);
-	// 			$insert = $this->m_olah_data->m_edit_banner($id_banner, $kategori, $foto, $layout);
-	// 			echo json_encode($insert);
-	// 		}
-	// 	}
-	// 	exit;
-	// }
+        if ($this->upload->do_upload("foto_banner")) {
+            $data = array('upload_data' => $this->upload->data());
 
-	// function edit_fotobanner()
-	// {
-	// 	$id_banner = $this->input->post('id-banner');
-	// 	$kategori = $this->input->post('kategory');
-	// 	$layout = $this->input->post('layout');
-	// 	$result = $this->m_olah_data->m_edit_fotobanner($id_banner, $kategori, $layout);
-	// 	echo json_decode($result);
-	// }
+            $id_banner = $this->input->post('id_banner');
+            $kategori = $this->input->post('kategori');
+            $foto = $data['upload_data']['file_name'];
+            $layout = $this->input->post('layout');
+            $uploadedImage = $this->upload->data();
+
+            if ($layout == 'banner') {
+                $this->resize_landcape($uploadedImage['file_name']);
+            } else {
+                $this->resize_potrait($uploadedImage['file_name']);
+            }
+
+            // $this->load->model('m_olah_data');
+            $insert = $this->m_olah_data->m_simpan_banner($id_banner, $kategori, $foto, $layout);
+
+            if ($insert) {
+                echo json_encode(array('success' => true, 'message' => 'Foto Banner Berhasil di Simpan'));
+            } else {
+                echo json_encode(array('success' => false, 'message' => 'Gagal menyimpan ke database'));
+            }
+        } else {
+            echo json_encode(array('success' => false, 'message' => $this->upload->display_errors()));
+        }
+	}
 
 	function edit_foto_banner()
 	{
 		$fotlama = $this->input->post('fotlama');
-		unlink('./upload/' . $fotlama); // Potensi kesalahan: path yang dihapus mungkin tidak benar
+		unlink('./upload/' . $fotlama);
 		$config['upload_path'] = "./upload/banner";
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['encrypt_name'] = TRUE;
 		$this->load->library('upload', $config);
 
-		if ($this->upload->do_upload("fot_produk")) {
+		if ($this->upload->do_upload("foto")) {
 			$data = array('upload_data' => $this->upload->data());
 			$id_banner = $this->input->post('id-banner');
 			$foto_banner = $data['upload_data']['file_name'];
-			$kategori = $this->input->post('kategory');
+			$kategori = $this->input->post('kategori');
 			$layout = $this->input->post('layout');
 			$uploadedImage = $this->upload->data();
 
 			if ($layout == 'banner') {
 
-				$this->resizeImage_landcape($uploadedImage['file_name']);
+				$this->resize_landcape($uploadedImage['file_name']);
 				$insert = $this->m_olah_data->m_edit_banner($id_banner, $kategori, $foto, $layout);
 				echo json_encode($insert);
 			} else {
-				$this->resizeImage_potrait($uploadedImage['file_name']);
+				$this->resize_potrait($uploadedImage['file_name']);
 				$insert = $this->m_olah_data->m_edit_banner($id_banner, $kategori, $foto, $layout);
 				echo json_encode($insert);
 			}
 		}
 		exit;
-}
-
-function edit_fotobanner()
-	{
-		$id_banner = $this->input->post('id-banner');
-		$kategori = $this->input->post('kategory');
-		$layout = $this->input->post('layout');
-		$result = $this->m_olah_data->m_edit_fotobanner($id_banner, $kategori, $layout);
-		echo json_decode($result); // Potensi kesalahan: json_decode digunakan tanpa penanganan kesalahan
 	}
 
-function hapus_foto_banner()
+	function edit_fotobanner()
+		{
+			$id_banner = $this->input->post('id-banner');
+			$kategori = $this->input->post('kategori');
+			$layout = $this->input->post('layout');
+			$result = $this->m_olah_data->m_edit_fotobanner($id_banner, $kategori, $layout);
+			echo json_decode($result);
+
+		}
+
+	function hapus_foto_banner()
+		{
+			$fotolama = $this->input->post('fotolama');
+			unlink('./upload/banner/' . $fotolama);
+			$id_banner = $this->input->post('id-banner');
+			$data = $this->m_olah_data->m_hapus_foto_banner($id_banner);
+			echo json_encode($data);
+		}
+
+	function select_foto_banner()
 	{
-		$fotlama = $this->input->post('fotlama');
-		unlink('./upload/banner/' . $fotlama);
-		$id_banner = $this->input->post('id-banner');
-		$data = $this->m_olah_data->m_hapus_foto_banner($id_banner);
+		$select_banner = $this->input->post('select-nm-banner');
+		$data = $this->m_olah_data->m_select_foto_produk($select_banner);
 		echo json_encode($data);
 	}
 
+	function list_select_foto_banner()
+	{
+		$data['_script'] = 'olah_data/olah_data_js';
+		$data['_view'] = 'olah_data/foto_banner';
+		$data['lay_etalase'] = $this->m_olah_data->m_get_kategori_etalase();
+		$data['kat_select'] = $this->m_olah_data->m_get_kategori();
+		$data['foto_banner'] = $this->m_olah_data->m_select_foto_produk();
+		$this->load->view('olah_data/foto_produk', $data);
+	}
 
 }

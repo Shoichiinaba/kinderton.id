@@ -32,7 +32,6 @@ class M_olah_data extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('foto_banner');
-        // $this->db->join('kategori', 'foto_banner.id_kategori = kategori.id_kategori');
         $this->db->order_by('id_banner', 'desc');
         $query = $this->db->get();
         return $query->result();
@@ -166,21 +165,22 @@ class M_olah_data extends CI_Model
         return $cart;
     }
 
-    function m_simpan_banner($id_banner, $kategori, $foto, $layout)
+    function m_get_kategori_etalase()
     {
-        $data = array(
-            'id_banner' => $id_banner,
-            'kategori' => $kategori,
-            'foto' => $foto,
-            'layout' => $layout,
-        );
-        $result = $this->db->insert('foto_banner', $data);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
+        $this->db->select('*');
+        $this->db->from('foto_banner');
+        $this->db->group_by('layout');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
+    function m_get_kategori_banner()
+    {
+        $this->db->select('*');
+        $this->db->from('foto_banner');
+        $this->db->group_by('kategori');
+        $query = $this->db->get();
+        return $query->result();
     }
 
     function m_edit_fotobanner($id_banner, $kategori, $layout)
@@ -210,4 +210,24 @@ class M_olah_data extends CI_Model
         $hasil = $this->db->query("DELETE FROM foto_banner WHERE id_banner='$id_banner'");
         return $hasil;
     }
+    public function m_simpan_banner($id_banner, $kategori, $foto, $layout)
+    {
+
+        $data = array(
+            'id_banner' => $id_banner,
+            'kategori' => $kategori,
+            'foto' => $foto,
+            'layout' => $layout
+        );
+
+        $this->db->insert('foto_banner', $data);
+
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

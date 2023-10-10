@@ -1,4 +1,6 @@
 <script>
+// const Toast = new FireToast();
+
 $(document).ready(function() {
     $('.notif-pesanan').load('<?php echo site_url('chekout/notif_vali_pesanan'); ?>');
     $('.notif-pesanan_dikirim').load('<?php echo site_url('chekout/notif_pesanan_dikirim'); ?>');
@@ -15,6 +17,7 @@ $(document).ready(function() {
         $('.form-data').load('<?php echo site_url('Olah_data/jenis_produk'); ?>');
         $('#form-harga-produk').attr('hidden', true);
         $('#form-foto-produk').attr('hidden', true);
+        $('#form-foto-banner').attr('hidden', true);
         $('#detail-pesanan').attr('hidden', true);
         $('#form-pengaturan').attr('hidden', true);
     });
@@ -39,6 +42,7 @@ $(document).ready(function() {
         $('.form-select-data-jenis-produk').load(
             '<?php echo site_url('Olah_data/form_select_data_jenis_produk'); ?>');
         $('#form-foto-produk').attr('hidden', true);
+        $('#form-foto-banner').attr('hidden', true);
         $('#form-jenis-produk').attr('hidden', true);
         $('#detail-pesanan').attr('hidden', true);
         $('#form-pengaturan').attr('hidden', true);
@@ -82,6 +86,7 @@ $(document).ready(function() {
     $('#btn-pengaturan').click(function() {
         $('.form-data').load('<?php echo site_url('Olah_data/pengaturan'); ?>');
         $('#form-foto-produk').attr('hidden', true);
+        $('#form-foto-banner').attr('hidden', true);
         $('#form-harga-produk').attr('hidden', true);
         $('#form-jenis-produk').attr('hidden', true);
         $('#detail-pesanan').attr('hidden', true);
@@ -91,6 +96,7 @@ $(document).ready(function() {
         $('.form-data').load('<?php echo site_url('Chekout/vali_pesanan'); ?>');
         $('#detail-pesanan').attr('hidden', true);
         $('#form-foto-produk').attr('hidden', true);
+        $('#form-foto-banner').attr('hidden', true);
         $('#form-jenis-produk').attr('hidden', true);
         $('#form-harga-produk').attr('hidden', true);
         $('#form-pengaturan').attr('hidden', true);
@@ -98,6 +104,7 @@ $(document).ready(function() {
     $('#btn-pesanan-dikirim').click(function(e) {
         $('.form-data').load('<?php echo site_url('Chekout/pesanan_dikirim'); ?>');
         $('#detail-pesanan').attr('hidden', true);
+        $('#form-foto-banner').attr('hidden', true);
         $('#form-foto-produk').attr('hidden', true);
         $('#form-jenis-produk').attr('hidden', true);
         $('#form-harga-produk').attr('hidden', true);
@@ -107,6 +114,7 @@ $(document).ready(function() {
         $('.form-data').load('<?php echo site_url('Chekout/riwayat_pesanan'); ?>');
         $('#detail-pesanan').attr('hidden', true);
         $('#form-foto-produk').attr('hidden', true);
+        $('#form-foto-banner').attr('hidden', true);
         $('#form-jenis-produk').attr('hidden', true);
         $('#form-harga-produk').attr('hidden', true);
         $('#form-pengaturan').attr('hidden', true);
@@ -581,7 +589,7 @@ $('#layout').change(function() {
         kategoriLabel.text('Kategori Etalase');
         kategoriSelect.html('<option value="">Pilih Kategori Etalase*</option>' +
             '<option value="girl">Girl</option>' +
-            '<option value="boys">Boys</option>' +
+            '<option value="boy">Boys</option>' +
             '<option value="adult">Adult</option>');
     } else {
         kategoriLabel.text('Kategori');
@@ -590,30 +598,100 @@ $('#layout').change(function() {
 });
 // akhir foto bannerr select //////////////////////////////////////////////////////////////////////////////////////////////////
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+
 // Simpan data banner
-// $('.loader-insert-foto').hide();
+
+$('.loader-insert-foto').hide();
+$("#btn-simpan-foto-banner").submit(function(e) {
+    e.preventDefault();
+    var val_submit = $("#btn-simpan-foto-banner").val();
+    var id_banner = $("#id-banner").find(':selected').val();
+    var kategori = $("#kategory").find(':selected').val();
+    var layout = $("#layout").find(':selected').val();
+    const foto_ban = $('#foto_banner').prop('files')[0];
+
+    if (id_banner == '0') {
+        Toast.fire({
+            type: 'error',
+            title: 'Jenis produk tidak boleh kosong!!'
+        })
+    } else {
+        $("#submit-simpan-banner").attr('disabled', true);
+        $('.loader-insert-foto').show();
+
+        let formData = new FormData();
+        formData.append('id_banner', id_banner);
+        formData.append('kategori', $('#kategory').val());
+        formData.append('foto_banner', foto_ban);
+        formData.append('layout', $('#layout').val());
+        formData.append('fotolama', $('#fotolama').val());
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo site_url('Olah_data/simpan_foto_banner'); ?>",
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                var data = JSON.parse(response);
+
+                if (data.success) {
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Foto Banner Berhasil di Simpan'
+                    })
+                    $("#submit-simpan-banner").removeAttr('disabled', true);
+                    $('.loader-insert-foto').hide();
+                    $('#form-foto-banner').attr('hidden', true);
+                    load_data_fotban();
+                } else {
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Foto Banner Berhasil di Simpan'
+                    })
+                }
+            },
+            error: function() {
+                alert("Data Gagal Diupload");
+            },
+        });
+    }
+});
+
+
+// $('.loader-insert-banner').hide();
 // $("#btn-simpan-foto-banner").submit(function(e) {
 //     // alert('ya');
 //     e.preventDefault();
 //     var val_simpan = $("#btn-simpan-foto-banner").val();
-//     var val_ceklis_ubah = $('#val-ceklis-banner').val();
+//     var val_ceklis_edit = $('#val-ceklis-banner').val();
 //     var id_banner = $("#id-banner").find(':selected').val();
+//     var kategori = $("#kategory").find(':selected').val();
+//     var layout = $("#layout").find(':selected').val();
 //     const foto_ban = $('#foto_banner').prop('files')[0];
+
 //     if (id_banner == '0') {
 //         Toast.fire({
 //             type: 'error',
-//             title: 'Jenis layout tidak boleh kosong!!'
+//             title: 'Jenis produk tidak boleh kosong!!'
 //         })
 //     } else {
 //         $("#submit-simpan-banner").attr('disabled', true);
 //         $('.loader-insert-banner').show();
 
 //         let formData = new FormData();
-//         formData.append('id_banner', $('#id-banner').val());
+//         formData.append('id_banner', id_banner);
 //         formData.append('kategori', $('#kategory').val());
-//         formData.append('foto', foto_ban);
+//         formData.append('foto_banner', foto_ban);
 //         formData.append('layout', $('#layout').val());
-//         formData.append('fotlama', $('#fotlama').val());
+//         formData.append('fotolama', $('#fotolama').val());
 //         if (val_simpan == 'simpan-foto-banner') {
 //             //alert('tess')
 //             $.ajax({
@@ -626,28 +704,27 @@ $('#layout').change(function() {
 //                 success: function(msg) {
 //                     Toast.fire({
 //                         type: 'success',
-//                         title: 'Foto Banner berhasil di simpan'
+//                         title: 'Foto Banner Berhasil di Simpan'
 //                     })
 //                     $("#submit-simpan-banner").removeAttr('disabled', true)
 //                     $('.loader-insert-banner').hide();
 //                     $('#form-foto-banner').attr('hidden', true);
-//                     load_data_foto();
+//                     load_data_fotban();
 
 //                 },
 //                 error: function() {
 //                     alert("Data Gagal Diupload");
 //                 },
 //             });
-//             setInterval(function() { //setInterval() metode mengeksekusi pada setiap interval sampai disebut clearInterval()
+//             setInterval(function() {
 //                 $('#load_tweets').load("fetch.php").fadeIn("slow");
-//                 //load() metode mengambil data dari halaman fetch.php
 //             }, 1000);
 //             return false;
 //         } else {
-//             if (val_ceklis_ubah == 'edit-foto') {
+//             if (val_ceklis_edit == 'edit-fotos') {
 //                 $.ajax({
 //                     type: 'POST',
-//                     url: "<?php echo site_url('olah_data/edit_foto_banner') ?>",
+//                     url: "<?php echo site_url('Olah_data/edit_foto_banner') ?>",
 //                     data: formData,
 //                     cache: false,
 //                     processData: false,
@@ -657,12 +734,11 @@ $('#layout').change(function() {
 //                             type: 'success',
 //                             title: 'Banner berhasil di update'
 //                         });
-
 //                         $("#submit-simpan-banner").removeAttr('disabled', true)
 //                         $('.loader-insert-banner').hide();
-//                         $('#ceklis-ubah-banner').prop('checked', false);
+//                         $('#ceklis-ubah-fotban').prop('checked', false);
 //                         $('#form-foto-banner').attr('hidden', true);
-//                         load_data_foto();
+//                         load_data_fotban();
 //                     },
 //                     error: function() {
 //                         alert("Data Gagal Diupload");
@@ -671,23 +747,21 @@ $('#layout').change(function() {
 //             } else {
 //                 $.ajax({
 //                     type: 'POST',
-//                     url: "<?php echo site_url('olah_data/edit_fotobanner') ?>",
+//                     url: "<?php echo site_url('Olah_data/edit_fotobanner') ?>",
 //                     data: formData,
 //                     cache: false,
 //                     processData: false,
 //                     contentType: false,
 //                     success: function(msg) {
-//                         // Toast.fire({
-//                         //     type: 'success',
-//                         //     title: 'Foto berhasil di update'
-//                         // });
-
+//                         Toast.fire({
+//                             type: 'success',
+//                             title: 'Foto berhasil di update'
+//                         });
 //                         $("#submit-simpan-banner").removeAttr('disabled', true)
 //                         $('.loader-insert-banner').hide();
 //                         $('#form-foto-banner').attr('hidden', true);
-//                         load_data_foto();
+//                         load_data_fotban();
 //                     },
-//                     //
 //                     error: function() {
 //                         alert("Data Gagal Diupload");
 //                     }
@@ -698,75 +772,6 @@ $('#layout').change(function() {
 //     }
 
 // });
-
-$('.loader-insert-foto').hide();
-$("#btn-simpan-foto-banner").on('submit', function(e) {
-    e.preventDefault();
-    var val_simpan = $("#btn-simpan-foto-banner").val();
-    var val_ceklis_ubah = $('#val-ceklis-banner').val();
-    var id_banner = $("#id-banner").find(':selected').val();
-    const foto_ban = $('#foto_banner').prop('files')[0];
-
-    if (id_banner == '0') {
-        alert('Jenis layout tidak boleh kosong!!');
-    } else {
-        $("#submit-simpan-banner").attr('disabled', true);
-        $('.loader-insert-banner').show();
-
-        let formData = new FormData();
-        formData.append('id_banner', $('#id-banner').val());
-        formData.append('kategori', $('#kategory').val());
-        formData.append('foto', foto_ban);
-        formData.append('layout', $('#layout').val());
-        formData.append('fotlama', $('#fotlama').val());
-
-        if (val_simpan == 'simpan-foto-banner') {
-            $.ajax({
-                type: 'POST',
-                url: "<?php echo site_url('Olah_data/simpan_foto_banner'); ?>",
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function(msg) {
-                    alert('Foto Banner berhasil disimpan');
-                    $("#submit-simpan-banner").removeAttr('disabled');
-                    $('.loader-insert-banner').hide();
-                    $('#form-foto-banner').attr('hidden', true);
-                    load_data_foto();
-                },
-                error: function(xhr, status, error) {
-                    alert("Terjadi kesalahan: " + error);
-                },
-            });
-            return false;
-        } else {
-            // var url_edit = val_ceklis_ubah == 'edit-foto' ?
-            //     "<?php echo site_url('olah_data/edit_foto_banner') ?>" :
-            //     "<?php echo site_url('olah_data/edit_fotobanner') ?>";
-
-            // $.ajax({
-            //     type: 'POST',
-            //     url: url_edit,
-            //     data: formData,
-            //     cache: false,
-            //     processData: false,
-            //     contentType: false,
-            //     success: function(msg) {
-            //         alert('Banner berhasil diupdate');
-            //         $("#submit-simpan-banner").removeAttr('disabled');
-            //         $('.loader-insert-banner').hide();
-            //         $('#ceklis-ubah-banner').prop('checked', false);
-            //         $('#form-foto-banner').attr('hidden', true);
-            //         load_data_foto();
-            //     },
-            //     error: function(xhr, status, error) {
-            //         alert("Terjadi kesalahan: " + error);
-            //     }
-            // });
-        }
-    }
-});
 
 
 $(document).on("click", ".pilih-fot-banner", function() {
@@ -787,24 +792,20 @@ $('#foto_banner').change(function(e) {
     reader.readAsDataURL(this.files[0]);
 });
 
-$('#ceklis-ubah-banner').click(function(e) {
+$('#ceklis-ubah-fotban').click(function(e) {
     if ($(this).is(":checked")) {
-        // profesi.push($(this).val());
-        $('#foto, .pilih-fot-banner').removeAttr('disabled');
-        $('#val-ceklis-banner').val('edit-foto');
-        // alert($('#id-fotpro').val());
+        $('#foto_banner, .pilih-fot-banner').removeAttr('disabled');
+        $('#val-ceklis-banner').val('edit-fotos');
     } else {
-        $('#foto, .pilih-fot-banner').attr('disabled', true);
+        $('#foto_banner, .pilih-fot-banner').attr('disabled', true);
         $('#val-ceklis-banner').val('');
     }
 });
 
-function load_data_foto() {
+function load_data_fotban() {
     var select_produk = $("#select-nm-banner").find(':selected').val();
     $.ajax({
-        // type: 'POST',
         url: "<?php echo site_url('Olah_data/foto_banner') ?>",
-        // data: formData,
         cache: false,
         processData: false,
         contentType: false,
@@ -827,7 +828,6 @@ function load_data_foto() {
 
 
 $(function() {
-    //Initialize Select2 Elements
     $('.select2').select2()
 });
 </script>

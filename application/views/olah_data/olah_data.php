@@ -404,6 +404,8 @@
                                     <span class="loader__element"></span>
                                 </div>
                                 <form action="" method="POST" id="btn-simpan-foto-banner" role="form">
+                                    <input type="text" id="id-banner" value="" hidden>
+                                    <input type="text" id="fotolama" value="" hidden>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <div class="form-group">
@@ -412,14 +414,12 @@
                                             <div class="form-group">
                                                 <label for="foto_banner">Foto Banner</label>
                                                 <div class="input-group">
-                                                    <input type="text" id="id-banner" value="" hidden>
-                                                    <input type="text" id="fotlama" value="" hidden>
                                                     <input type="file" id="foto_banner" name="foto_banner"
-                                                        class="file-banner" hidden required>
+                                                        class="file-banner" hidden>
                                                     <input type="text" class="pilih-fot-banner form-control"
                                                         placeholder="Upload Gambar" id="nm-foto" required>
                                                     <div class="input-group-append">
-                                                        <button type="button" id=""
+                                                        <button type="button" id="banner"
                                                             class="pilih-fot-banner browse btn btn-dark">Pilih
                                                             Gambar</button>
                                                     </div>
@@ -429,11 +429,11 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Layout</label>
-                                                        <select class="form-control" id="layout" name="status_foto"
+                                                        <select class="form-control" id="layout" name="layout"
                                                             required="true">
                                                             <option value="">Pilih Layout*</option>
-                                                            <option value="banner">Banner</option>
-                                                            <option value="etalase">Etalase</option>
+                                                            <option data-id="banner" value="banner">Banner</option>
+                                                            <option data-id="etalase" value="etalase">Etalase</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -447,20 +447,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <img src="<?php echo base_url('assets'); ?>/img/80x80.png"
                                                 id="preview-fot-banner"
                                                 class="pilih-fot-produk img-thumbnail max-height-14rem">
-                                            <div id="ceklis-ubah-foto" class="form-group" hidden>
+                                            <div id="ceklis-ubah-banner" class="form-group" hidden>
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" type="text"
                                                         id="val-ceklis-banner" value="">
                                                     <input class="custom-control-input" type="checkbox"
-                                                        id="ceklis-ubah-banner" value="">
-                                                    <label for="ceklis-ubah-banner" class="custom-control-label">Cheklis
-                                                        untuk mengubah foto produk</label>
+                                                        id="ceklis-ubah-fotban" value="">
+                                                    <label for="ceklis-ubah-fotban" class="custom-control-label">Cheklis
+                                                        untuk mengubah foto banner</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -528,5 +527,6 @@
         </div>
         <!-- /row -->
     </div>
+
     <!-- /container -->
 </main>

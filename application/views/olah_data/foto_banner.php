@@ -75,23 +75,22 @@
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="form-group">
-                            <select class="form-control select2 height-2rem p-2px" id="layout">
-                                <option value="">Filter Layout</option>
-                                <option value="1">Banner</option>
-                                <option value="2">Etalase</option>
+                            <select class="form-control select2 height-2rem p-2px" id="select-nm-banner">
+                                <option value="0">Filter Layout</option>
+                                <?php
+                                foreach ($lay_etalase as $lay) :
+                                ?>
+                                <option value="<?php echo $lay->layout; ?>"><?php echo $lay->layout; ?>
+                                </option>
+                                <?php
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="form-group">
-                            <select class="form-control" id="kategory" name="kategori">
-                                <option value="">Filter Kategori</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6 col-6">
                         <button type="button" id="btn-form-foto-banner"
                             class="btn btn-sm bg-info float-right col-12">Tambah Banner</button>
                     </div>
@@ -113,9 +112,9 @@
                     <?php
                     foreach ($foto_banner as $ban) {
                     ?>
-                    <tr id="" class="tr-foto-produk tr-foto-<?php echo $ban->id_banner; ?>">
+                    <tr id="" class="tr-foto-banner tr-foto-<?php echo $ban->layout; ?>">
 
-                    <td role="cell" scope="col"><?php echo $ban->layout; ?></td>
+                        <td role="cell" scope="col"><?php echo $ban->layout; ?></td>
                         <td role="cell" scope="col"><?php echo $ban->kategori; ?></td>
                         <td role="cell" scope="col"><img
                                 src="<?php echo base_url('upload'); ?>/banner/<?php echo $ban->foto; ?>" id=""
@@ -128,8 +127,7 @@
                                     class="btn btn-xs bg-gradient-info elevation-3 btn-edit-foto-banner" id=""
                                     data-id-banner="<?php echo $ban->id_banner; ?>"
                                     data-layout="<?php echo $ban->layout; ?>"
-                                    data-kategori="<?php echo $ban->kategori; ?>"
-                                    data-foto="<?php echo $ban->foto; ?>">
+                                    data-kategori="<?php echo $ban->kategori; ?>" data-foto="<?php echo $ban->foto; ?>">
                                     <i class="fa-solid fa-pen-to-square"></i> Edit
                                 </button>
                             </a>
@@ -137,7 +135,7 @@
                             <button type="button" data-id=""
                                 class="btn btn-xs bg-gradient-danger elevation-3 hapus-foto-banner"
                                 data-id-banner="<?php echo $ban->id_banner; ?>"
-                                data-fotlama="<?php echo $ban->foto; ?>">
+                                data-fotolama="<?php echo $ban->foto; ?>">
                                 <i class="fas fa-trash-alt mr-1"></i>Delete
                             </button>
                             <!-- akhir tombol -->
@@ -163,7 +161,7 @@ $(document).ready(function() {
 
         } else {
             $('.tr-foto-banner').hide();
-            $('.tr-foto-banner' + id).show();
+            $('.tr-foto-' + id).show();
         }
     });
 
@@ -178,12 +176,12 @@ $(document).ready(function() {
         var foto = $(this).data('foto');
         $("#id-banner, option[value='" + id_banner + "']").attr("selected", "selected");
         $("#layout, option[value='" + layout + "']").attr("selected", "selected");
-        $("#kategori, option[value='" + kategori + "']").attr("selected", "selected");
+        $("#kategory, option[value='" + kategori + "']").attr("selected", "selected");
         $('#preview-fot-banner').attr({
             src: "<?php echo base_url('upload'); ?>/banner/" + foto + ""
         });
 
-        $('#fotlama').val(foto);
+        $('#fotolama').val(foto);
         $('#id-banner').val($(this).data('id-banner'));
     });
 
@@ -192,13 +190,13 @@ $(document).ready(function() {
 
         // Delete id
         var id_banner = $(this).data('id-banner');
-        var fotlama = $(this).data('fotlama');
+        var fotolama = $(this).data('fotolama');
         $('#id-banner').val(id_banner);
         var confirmalert = confirm("Yakin Untuk Hapus?");
         if (confirmalert == true) {
             let formData = new FormData();
             formData.append('id-banner', id_banner);
-            formData.append('fotlama', fotlama);
+            formData.append('fotolama', fotolama);
             $.ajax({
                 type: 'POST',
                 url: "<?php echo site_url('olah_data/hapus_foto_banner') ?>",
@@ -215,11 +213,12 @@ $(document).ready(function() {
             });
         }
     });
+
     $('#btn-form-foto-banner').click(function(e) {
         $('#form-foto-banner').removeAttr('hidden', true);
         $("#btn-simpan-foto-banner").val('simpan-foto-produk');
         $('#foto_banner, .pilih-foto-banner').removeAttr('disabled', true);
-        $('#preview-foto-banner').attr({
+        $('#preview-fot-banner').attr({
             src: "<?php echo base_url('assets'); ?>/img/80x80.png"
         });
         $('#ceklis-ubah-banner').attr('hidden', true);
@@ -231,5 +230,4 @@ $(document).ready(function() {
     });
 
 });
-
 </script>
