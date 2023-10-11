@@ -24,7 +24,7 @@ class Konfrim_akun extends CI_Controller
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
             'smtp_host' => 'mail.kinderton.id',
-            'smtp_user' => 'aktivasi@kinderton.id',  // Email gmail
+            'smtp_user' => 'aktivasi@kinderton.id',  // Email pengirim
             'smtp_pass'   => 'kinderton123!',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
