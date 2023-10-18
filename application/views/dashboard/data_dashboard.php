@@ -67,7 +67,7 @@
             </figure>
             <div class="row">
                 <div class="col text-right">
-                    <span class="font-size-xs pr-2"><?php echo ($jumlah->num_rows()); ?> terjual</span>
+                    <!-- <span class="font-size-xs pr-2"><?php echo ($jumlah->num_rows()); ?> terjual</span> -->
                 </div>
             </div>
             <a href="<?php echo base_url(); ?>detail_produk/data/<?php echo $row->id_jp; ?>/<?php echo $nm_produk; ?>">
