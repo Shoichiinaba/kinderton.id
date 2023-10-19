@@ -39,6 +39,13 @@ class Olah_data extends CI_Controller
 		$this->load->view('olah_data/pengaturan', $data);
 	}
 
+	function quots(){
+		$data['_script'] = 'olah_data/olah_data_js';
+		$data['_view'] = 'olah_data/quotes';
+		$data['quote'] = $this->m_olah_data->m_list_quotes();
+		$this->load->view('olah_data/quotes', $data);
+	}
+
 	function update_pengaturan()
 	{
 		$data = array(
@@ -496,5 +503,41 @@ class Olah_data extends CI_Controller
 		$data['foto_banner'] = $this->m_olah_data->m_select_foto_produk();
 		$this->load->view('olah_data/foto_produk', $data);
 	}
+
+	// Quote
+
+	public function edit_foto_quote()
+	{
+		$fotold = $this->input->post('fotold');
+		unlink('./upload/quots/' . $fotold);
+
+		$config['upload_path'] = "./upload/quots";
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload("gambar")) {
+			$data = array('upload_data' => $this->upload->data());
+			$id = $this->input->post('id');
+			$gambar = $data['upload_data']['file_name'];
+			$judul_quots = $this->input->post('judul_quots');
+
+			$this->resizeImage_potrait($gambar);
+			$insert = $this->m_olah_data->m_edit_foto_quote($id, $gambar, $judul_quots);
+			echo json_encode($insert);
+		}
+		exit;
+	}
+
+
+	function edit_fotoquote()
+	{
+		$id = $this->input->post('id');
+		$judul_quots = $this->input->post('judul_quots');
+		$result = $this->m_olah_data->m_edit_fotoquote($id, $judul_quots);
+		echo json_decode($result);
+	}
+
+	// Quote akhir
 
 }

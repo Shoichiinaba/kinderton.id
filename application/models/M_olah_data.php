@@ -19,6 +19,14 @@ class M_olah_data extends CI_Model
         return $query->result();
     }
 
+    function m_list_quotes(){
+        $this->db->select('*');
+        $this->db->from('quots');
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     function m_list_foto_produk()
     {
         $this->db->select('*');
@@ -185,24 +193,32 @@ class M_olah_data extends CI_Model
 
     function m_edit_fotobanner($id_banner, $kategori, $layout)
     {
-        $hasil = $this->db->query("UPDATE foto_banner SET id_banner='$id_banner', kategori='$kategori',layout='$layout' WHERE id_banner='$id_banner'");
+        $data = array(
+            'kategori' => $kategori,
+            'layout' => $layout
 
-        if ($hasil) {
-            return true;
-        } else {
-            return false;
-        }
+        );
+
+        $this->db->where('id_banner', $id_banner);
+        $result = $this->db->update('foto_banner', $data);
+
+        return $result;
     }
 
     function m_edit_banner($id_banner, $kategori, $foto, $layout)
     {
-        $hasil = $this->db->query("UPDATE foto_banner SET id_banner='$id_banner', kategori='$kategori',foto='$foto',layout='$layout'");
+        $data = array(
+            'kategori' => $kategori,
+            'foto' => $foto,
+            'layout' => $layout
 
-        if ($hasil) {
-            return true;
-        } else {
-            return false;
-        }
+        );
+
+        $this->db->where('id_banner', $id_banner);
+        $result = $this->db->update('foto_banner', $data);
+
+        return $result;
+
     }
 
     function m_hapus_foto_banner($id_banner)
@@ -229,5 +245,35 @@ class M_olah_data extends CI_Model
         }
 
     }
+
+    // Quotes
+
+    public function m_edit_foto_quote($id, $gambar, $judul_quots)
+    {
+        $data = array(
+            'gambar' => $gambar,
+            'judul_quots' => $judul_quots
+        );
+
+        $this->db->where('id', $id);
+        $this->db->update('quots', $data);
+
+        return $this->db->affected_rows();
+    }
+
+
+    public function m_edit_fotoquote($id, $judul_quots)
+    {
+        $data = array(
+            'judul_quots' => $judul_quots
+        );
+
+        $this->db->where('id', $id);
+        $result = $this->db->update('quots', $data);
+
+        return $result;
+    }
+
+    // Quotes akhir
 
 }

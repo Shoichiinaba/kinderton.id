@@ -92,6 +92,15 @@ $(document).ready(function() {
         $('#detail-pesanan').attr('hidden', true);
     });
 
+    $('#btn-quotes').click(function() {
+        $('.form-data').load('<?php echo site_url('Olah_data/quots'); ?>');
+        $('#form-foto-produk').attr('hidden', true);
+        $('#form-foto-banner').attr('hidden', true);
+        $('#form-harga-produk').attr('hidden', true);
+        $('#form-jenis-produk').attr('hidden', true);
+        $('#detail-pesanan').attr('hidden', true);
+    });
+
     $('#btn-vali-pesanan').click(function(e) {
         $('.form-data').load('<?php echo site_url('Chekout/vali_pesanan'); ?>');
         $('#detail-pesanan').attr('hidden', true);
@@ -614,7 +623,7 @@ $("#btn-simpan-foto-banner").submit(function(e) {
     var id_banner = $("#id-banner").find(':selected').val();
     var kategori = $("#kategory").find(':selected').val();
     var layout = $("#layout").find(':selected').val();
-    const foto_ban = $('#foto_banner').prop('files')[0];
+    const foto_ban = $('#foto').prop('files')[0];
 
     if (id_banner == '0') {
         Toast.fire({
@@ -665,139 +674,104 @@ $("#btn-simpan-foto-banner").submit(function(e) {
     }
 });
 
+// edit banner
+$('.loader-insert-foto').hide();
+$("#btn-simpan-foto-banner").on('submit', function(e) {
+    e.preventDefault();
+    var id_banner = $("#id_banner").val();
+    var val_ceklis_banner = $('#val-ceklis-banner').val();
+    var kategori = $("#kategory").find(':selected').val();
+    var layout = $("#layout").find(':selected').val();
+    var foto = $('#foto')[0].files[0];
 
-// $('.loader-insert-banner').hide();
-// $("#btn-simpan-foto-banner").submit(function(e) {
-//     // alert('ya');
-//     e.preventDefault();
-//     var val_simpan = $("#btn-simpan-foto-banner").val();
-//     var val_ceklis_edit = $('#val-ceklis-banner').val();
-//     var id_banner = $("#id-banner").find(':selected').val();
-//     var kategori = $("#kategory").find(':selected').val();
-//     var layout = $("#layout").find(':selected').val();
-//     const foto_ban = $('#foto_banner').prop('files')[0];
+    if (id_banner == '0') {
+        Toast.fire({
+            type: 'error',
+            title: 'Jenis produk tidak boleh kosong!!'
+        });
+    } else {
+        $("#submit-simpan-banner").attr('disabled', true);
+        $('.loader-insert-foto').show();
 
-//     if (id_banner == '0') {
-//         Toast.fire({
-//             type: 'error',
-//             title: 'Jenis produk tidak boleh kosong!!'
-//         })
-//     } else {
-//         $("#submit-simpan-banner").attr('disabled', true);
-//         $('.loader-insert-banner').show();
+        var formData = new FormData();
+        formData.append('id_banner', id_banner);
+        formData.append('kategori', $('#kategory').val());
+        formData.append('foto_banner', foto);
+        formData.append('layout', $('#layout').val());
+        formData.append('fotolama', $('#fotolama').val());
 
-//         let formData = new FormData();
-//         formData.append('id_banner', id_banner);
-//         formData.append('kategori', $('#kategory').val());
-//         formData.append('foto_banner', foto_ban);
-//         formData.append('layout', $('#layout').val());
-//         formData.append('fotolama', $('#fotolama').val());
-//         if (val_simpan == 'simpan-foto-banner') {
-//             //alert('tess')
-//             $.ajax({
-//                 type: 'POST',
-//                 url: "<?php echo site_url('Olah_data/simpan_foto_banner'); ?>",
-//                 data: formData,
-//                 cache: false,
-//                 processData: false,
-//                 contentType: false,
-//                 success: function(msg) {
-//                     Toast.fire({
-//                         type: 'success',
-//                         title: 'Foto Banner Berhasil di Simpan'
-//                     })
-//                     $("#submit-simpan-banner").removeAttr('disabled', true)
-//                     $('.loader-insert-banner').hide();
-//                     $('#form-foto-banner').attr('hidden', true);
-//                     load_data_fotban();
-
-//                 },
-//                 error: function() {
-//                     alert("Data Gagal Diupload");
-//                 },
-//             });
-//             setInterval(function() {
-//                 $('#load_tweets').load("fetch.php").fadeIn("slow");
-//             }, 1000);
-//             return false;
-//         } else {
-//             if (val_ceklis_edit == 'edit-fotos') {
-//                 $.ajax({
-//                     type: 'POST',
-//                     url: "<?php echo site_url('Olah_data/edit_foto_banner') ?>",
-//                     data: formData,
-//                     cache: false,
-//                     processData: false,
-//                     contentType: false,
-//                     success: function(msg) {
-//                         Toast.fire({
-//                             type: 'success',
-//                             title: 'Banner berhasil di update'
-//                         });
-//                         $("#submit-simpan-banner").removeAttr('disabled', true)
-//                         $('.loader-insert-banner').hide();
-//                         $('#ceklis-ubah-fotban').prop('checked', false);
-//                         $('#form-foto-banner').attr('hidden', true);
-//                         load_data_fotban();
-//                     },
-//                     error: function() {
-//                         alert("Data Gagal Diupload");
-//                     }
-//                 });
-//             } else {
-//                 $.ajax({
-//                     type: 'POST',
-//                     url: "<?php echo site_url('Olah_data/edit_fotobanner') ?>",
-//                     data: formData,
-//                     cache: false,
-//                     processData: false,
-//                     contentType: false,
-//                     success: function(msg) {
-//                         Toast.fire({
-//                             type: 'success',
-//                             title: 'Foto berhasil di update'
-//                         });
-//                         $("#submit-simpan-banner").removeAttr('disabled', true)
-//                         $('.loader-insert-banner').hide();
-//                         $('#form-foto-banner').attr('hidden', true);
-//                         load_data_fotban();
-//                     },
-//                     error: function() {
-//                         alert("Data Gagal Diupload");
-//                     }
-//                 });
-//             }
-
-//         }
-//     }
-
-// });
-
+        if (val_ceklis_banner == 'edit-fotben') {
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Olah_data/edit_foto_banner'); ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(msg) {
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Banner berhasil di update'
+                    });
+                    $("#submit-simpan-banner").removeAttr('disabled', true);
+                    $('.loader-insert-foto').hide();
+                    $('#ceklis-ubah-fotban').prop('checked', false);
+                    $('#form-foto-banner').attr('hidden', true);
+                    load_data_fotban();
+                },
+                error: function() {
+                    alert("Data Gagal Simpan");
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Olah_data/edit_fotobanner'); ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Foto berhasil di update'
+                    });
+                    $("#submit-simpan-banner").removeAttr('disabled', true);
+                    $('.loader-insert-foto').hide();
+                    $('#form-foto-banner').attr('hidden', true);
+                    load_data_fotban();
+                },
+                error: function() {
+                    alert("Data Gagal UPdate");
+                }
+            });
+        }
+    }
+});
+// akhir edit bannerr
 
 $(document).on("click", ".pilih-fot-banner", function() {
     var file = $(this).parents().find(".file-banner");
     file.trigger("click");
 });
 
-$('#foto_banner').change(function(e) {
+$('#foto').change(function(e) {
     var fileName = e.target.files[0].name;
     $("#nm-foto").val(fileName);
 
     var reader = new FileReader();
     reader.onload = function(e) {
-        // get loaded data and render thumbnail.
         document.getElementById("preview-fot-banner").src = e.target.result;
     };
-    // read the image file as a data URL.
     reader.readAsDataURL(this.files[0]);
 });
 
 $('#ceklis-ubah-fotban').click(function(e) {
     if ($(this).is(":checked")) {
-        $('#foto_banner, .pilih-fot-banner').removeAttr('disabled');
-        $('#val-ceklis-banner').val('edit-fotos');
+        $('#foto, .pilih-fot-banner').removeAttr('disabled');
+        $('#val-ceklis-banner').val('edit-fotben');
     } else {
-        $('#foto_banner, .pilih-fot-banner').attr('disabled', true);
+        $('#foto, .pilih-fot-banner').attr('disabled', true);
         $('#val-ceklis-banner').val('');
     }
 });
@@ -830,4 +804,131 @@ function load_data_fotban() {
 $(function() {
     $('.select2').select2()
 });
+
+
+// Quotes edit
+
+$('.loader-insert-foto').hide();
+$("#btn-simpan-foto-quote").on('submit', function(e) {
+    e.preventDefault();
+    var id = $("#id").val();
+    var val_ceklis_quote = $('#val-ceklis-quote').val();
+    var gambar = $('#gambar')[0].files[0];
+
+    if (id === '0') {
+        Toast.fire({
+            type: 'error',
+            title: 'Quote tidak boleh kosong!!'
+        });
+    } else {
+        $("#submit-simpan-quote").attr('disabled', true);
+        $('.loader-insert-foto').show();
+
+        var formData = new FormData();
+        formData.append('id', id);
+        formData.append('judul_quots', $('#judul_quots').val());
+        formData.append('gambar', gambar);
+        formData.append('fotold', $('#fotold').val());
+
+        if (val_ceklis_quote == 'edit-gambar') {
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Olah_data/edit_foto_quote') ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Gambar berhasil diupdate'
+                    });
+                    $("#submit-simpan-quote").removeAttr('disabled');
+                    $('.loader-insert-foto').hide();
+                    $('#ceklis-ubah-quote').prop('checked', false);
+                    $('#form-foto-quote').attr('hidden', true);
+                    load_data_quots();
+                },
+                error: function() {
+                    alert("Data Gagal Simpan");
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Olah_data/edit_fotoquote') ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Data berhasil diupdate'
+                    });
+                    $("#submit-simpan-quote").removeAttr('disabled');
+                    $('.loader-insert-foto').hide();
+                    $('#form-foto-quote').attr('hidden', true);
+                    load_data_quots();
+                },
+                error: function() {
+                    alert("Data Gagal Simpan");
+                }
+            });
+        }
+    }
+});
+
+
+$(document).on("click", ".pilih-quote", function() {
+    var file = $(this).parents().find(".file-quote");
+    file.trigger("click");
+});
+
+
+$('#gambar').change(function(e) {
+    var fileName = e.target.files[0].name;
+    $("#nm-fot-quote").val(fileName);
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById("preview-fot-quote").src = e.target.result;
+    };
+    reader.readAsDataURL(this.files[0]);
+});
+
+$('#ceklis-ubah-quote').click(function(e) {
+    if ($(this).is(":checked")) {
+        $('#gambar, .pilih-quote').removeAttr('disabled');
+        $('#val-ceklis-quote').val('edit-gambar');
+    } else {
+        $('#gambar, .pilih-quote').attr('disabled', true);
+        $('#val-ceklis-quote').val('');
+    }
+});
+
+function load_data_quots() {
+    var select_quote = $("#select-nm-quote").find(':selected').val();
+    $.ajax({
+        url: "<?php echo site_url('Olah_data/quots') ?>",
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+            $('.form-data').html(data);
+            $('#select-nm-quote').val(select_quote);
+            if (select_quote == '0') {
+                $('.tr-foto-quote').show();
+
+            } else {
+                $('.tr-foto-quote').hide();
+                $('.tr-foto-' + select_quote).show();
+            }
+        },
+        error: function() {
+            alert("Data Gagal Ditampilkan");
+        }
+    });
+    // Akhir quotes edit
+}
 </script>

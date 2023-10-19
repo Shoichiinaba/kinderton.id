@@ -55,6 +55,7 @@
                             Produk</button>
                         <button type="button" id="btn-foto-banner" class="btn-menu btn_1 full-width">Foto
                             Banner</button>
+                        <button type="button" id="btn-quotes" class="btn-menu btn_1 full-width">Quotes</button>
                         <button type="button" id="btn-pengaturan" class="btn-menu btn_1 full-width">Pengaturan</button>
                         <hr>
                         <h4>Menu Pemesanan</h4>
@@ -412,14 +413,13 @@
                                                 <div class="form-select-data-jenis-produk-banner"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="foto_banner">Foto Banner</label>
+                                                <label for="foto">Foto Banner</label>
                                                 <div class="input-group">
-                                                    <input type="file" id="foto_banner" name="foto_banner"
-                                                        class="file-banner" hidden>
+                                                    <input type="file" id="foto" name="foto" class="file-banner" hidden>
                                                     <input type="text" class="pilih-fot-banner form-control"
                                                         placeholder="Upload Gambar" id="nm-foto" required>
                                                     <div class="input-group-append">
-                                                        <button type="button" id="banner"
+                                                        <button type="button" id="pilih-fot-banner"
                                                             class="pilih-fot-banner browse btn btn-dark">Pilih
                                                             Gambar</button>
                                                     </div>
@@ -451,7 +451,7 @@
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <img src="<?php echo base_url('assets'); ?>/img/80x80.png"
                                                 id="preview-fot-banner"
-                                                class="pilih-fot-produk img-thumbnail max-height-14rem">
+                                                class="pilih-fot-banner img-thumbnail max-height-14rem">
                                             <div id="ceklis-ubah-banner" class="form-group" hidden>
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" type="text"
@@ -471,6 +471,85 @@
                                         </div>
                                         <div class="col">
                                             <button type="submit" id="submit-simpan-banner"
+                                                class="col-12 btn btn-sm btn-info float-right" value="">Simpan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="form-foto-quote" hidden>
+                    <div class="box_account">
+                        <div class="form_container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <h5>Edit Quotes</h5>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="private box">
+                                <div id="load-insert-quote" class="loader-insert-foto">
+                                    <span class="loader__element"></span>
+                                    <span class="loader__element"></span>
+                                    <span class="loader__element"></span>
+                                </div>
+                                <form action="" method="POST" id="btn-simpan-foto-quote" role="form">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <div class="form-select-data-jenis-produk-foto"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <label for="texture">Quote</label>
+                                                        <div class="form-group">
+                                                            <textarea type="text" id="judul_quots" value=""
+                                                                name="judul_quots" class="form-control" required>
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label for="gambar">Backround</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="id" value="" hidden>
+                                                    <input type="text" id="fotold" value="" hidden>
+                                                    <input type="file" id="gambar" name="gambar" class="file-quote"
+                                                        hidden required>
+                                                    <input type="text" class="pilih-quote form-control"
+                                                        placeholder="Upload Gambar" id="nm-fot-quote" required>
+                                                    <div class="input-group-append">
+                                                        <button type="button" id="pilih-quote"
+                                                            class="pilih-quote browse btn btn-dark" disabled>Pilih
+                                                            Gambar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <img src="<?php echo base_url('assets'); ?>/img/80x80.png"
+                                                id="preview-fot-quote"
+                                                class="pilih-quote img-thumbnail max-height-14rem">
+                                            <div id="ceklis-ubah-gambar" class="form-group" hidden>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="text"
+                                                        id="val-ceklis-quote" value="">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="ceklis-ubah-quote" value="">
+                                                    <label for="ceklis-ubah-quote" class="custom-control-label">Cheklis
+                                                        untuk mengubah Backround</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="reset" id="btn-batal-quote"
+                                                class="col-12 btn btn-sm btn-danger">Batal</button>
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" id="submit-simpan-quote"
                                                 class="col-12 btn btn-sm btn-info float-right" value="">Simpan</button>
                                         </div>
                                     </div>
