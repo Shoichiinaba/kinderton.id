@@ -36,6 +36,16 @@
         transform: scale(2);
     }
 }
+
+/* Menggunakan CSS untuk menyembunyikan elemen-elemen yang tidak terlihat */
+/* #kategory,
+#klik-ke,
+#klik-kategori,
+#klik-aksi {
+    display: none; */
+/* } */
+</style>
+
 </style>
 <main class="bg_gray">
     <div class="container margin_30 pt-5rem">
@@ -440,9 +450,22 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label id="kategoriLabel">Kategori</label>
-                                                        <select class="form-control" id="kategory" name="kategory"
-                                                            required="true">
+                                                        <select class="form-control" id="kategory" name="kategori">
                                                             <option value="">Pilih Layout Dulu*</option>
+                                                        </select>
+                                                        <label id="aksiLabel">Aksi</label>
+                                                        <select class="form-control" id="klik-ke" name="klik_ke">
+                                                            <option value="">Pilih Layout Dulu*</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <select class="form-control" id="klik-kategori" name="kategori">
+                                                            <option value="">Pilih klik aksi Dulu*</option>
+                                                        </select>
+                                                        <select class=" form-control" id="klik-aksi" name="id_produk">
+                                                            <option value="">Pilih klik aksi Dulu*</option>
                                                         </select>
                                                     </div>
                                                 </div>

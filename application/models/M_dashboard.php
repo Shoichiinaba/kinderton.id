@@ -50,8 +50,20 @@ class M_dashboard extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('foto_banner');
-        // $this->db->join('jenis_produk', 'foto_banner.id_fotjp = jenis_produk.id_jp');
-        $this->db->where('layout', 'Banner');
+        $this->db->where('klik_ke', 'kategori');
+        $this->db->order_by('RAND()');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    function slide_prod()
+    {
+        $this->db->select('*');
+        $this->db->from('foto_banner');
+        $this->db->join('jenis_produk', 'foto_banner.id_produk = jenis_produk.id_jp');
+        // $this->db->where('layout', 'Banner');
+        $this->db->where('klik_ke', 'produk');
         $this->db->order_by('RAND()');
         $query = $this->db->get();
         return $query->result();

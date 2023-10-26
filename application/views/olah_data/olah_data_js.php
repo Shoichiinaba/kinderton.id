@@ -577,34 +577,120 @@ $(document).ready(function() {
 
 // foto bannerr select //////////////////////////////////////////////////////////////////////////////////////////////////
 var katSelectData = <?php echo json_encode($kat_select); ?>;
+var katSelectDatap = <?php echo json_encode($kat_produk); ?>;
 
-$('#layout').change(function() {
-    var selectedValue = $(this).val();
+// $('#layout').change(function() {
+//     var selectedValue = $(this).val();
+//     var kategoriSelect = $('#kategory');
+//     var kategoriLabel = $('#kategoriLabel');
+
+//     if (selectedValue === 'banner') {
+//         kategoriLabel.text('Kategori Banner');
+//         kategoriSelect.empty();
+
+//         kategoriSelect.append('<option value="">Pilih Kategori Banner*</option>');
+
+//         $.each(<?php echo json_encode($kat_select); ?>, function(index, item) {
+//             kategoriSelect.append('<option value="' + item.nm_kategori + '">' + item.nm_kategori +
+//                 '</option>');
+//         });
+
+//     } else if (selectedValue === 'etalase') {
+//         kategoriLabel.text('Kategori Etalase');
+//         kategoriSelect.html('<option value="">Pilih Kategori Etalase*</option>' +
+//             '<option value="girl">Girl</option>' +
+//             '<option value="boy">Boys</option>' +
+//             '<option value="adult">Adult</option>');
+//     } else {
+//         kategoriLabel.text('Kategori');
+//         kategoriSelect.html('<option value="">Pilih Kategori*</option>');
+//     }
+// });
+
+$(document).ready(function() {
     var kategoriSelect = $('#kategory');
+    var aksiSelect = $('#klik-ke');
     var kategoriLabel = $('#kategoriLabel');
+    var aksiLabel = $('#aksiLabel');
+    var klikAksiSelect = $('#klik-aksi');
+    var klikkategSelect = $('#klik-kategori');
+    var klikLabel = $('#klikLabel');
 
-    if (selectedValue === 'banner') {
-        kategoriLabel.text('Kategori Banner');
-        kategoriSelect.empty();
+    aksiSelect.hide();
+    kategoriSelect.hide();
+    kategoriLabel.hide();
+    klikAksiSelect.hide();
+    aksiLabel.hide();
+    klikLabel.hide();
+    klikkategSelect.hide();
 
-        kategoriSelect.append('<option value="">Pilih Kategori Banner*</option>');
+    $('#layout').change(function() {
+        var selectedValue = $(this).val();
 
-        $.each(<?php echo json_encode($kat_select); ?>, function(index, item) {
-            kategoriSelect.append('<option value="' + item.nm_kategori + '">' + item.nm_kategori +
-                '</option>');
-        });
+        if (selectedValue === 'banner') {
+            aksiLabel.text('Pilih Klik Ke');
+            aksiSelect.empty();
+            aksiSelect.show();
+            aksiLabel.show();
+            aksiSelect.html('<option value="">Pilih Klik Aksi*</option>' +
+                '<option value="kategori">Kategori</option>' +
+                '<option value="produk">Produk</option>');
 
-    } else if (selectedValue === 'etalase') {
-        kategoriLabel.text('Kategori Etalase');
-        kategoriSelect.html('<option value="">Pilih Kategori Etalase*</option>' +
-            '<option value="girl">Girl</option>' +
-            '<option value="boy">Boys</option>' +
-            '<option value="adult">Adult</option>');
-    } else {
-        kategoriLabel.text('Kategori');
-        kategoriSelect.html('<option value="">Pilih Kategori*</option>');
-    }
+            kategoriSelect.hide();
+            klikAksiSelect.hide();
+            klikLabel.hide();
+            kategoriLabel.hide();
+        } else if (selectedValue === 'etalase') {
+            kategoriLabel.text('Kategori Etalase');
+            kategoriSelect.show();
+            kategoriLabel.show();
+            kategoriSelect.html('<option value="">Pilih Kategori Etalase*</option>' +
+                '<option value="girl">Girl</option>' +
+                '<option value="boy">Boys</option>' +
+                '<option value="adult">Adult</option>');
+
+            aksiSelect.hide();
+            aksiLabel.hide();
+            klikAksiSelect.hide();
+            klikkategSelect.hide();
+        } else {
+            kategoriSelect.hide();
+            klikAksiSelect.hide();
+            aksiSelect.hide();
+            aksiLabel.hide();
+            klikLabel.hide();
+            klikkategSelect.hide();
+        }
+    });
+
+    $('#klik-ke').change(function() {
+        var selectedValue = $(this).val();
+
+        if (selectedValue === 'kategori') {
+            klikAksiSelect.empty();
+            klikAksiSelect.append('<option value="">Pilih Kategori*</option>');
+            $.each(<?php echo json_encode($kat_select); ?>, function(index, item) {
+                klikAksiSelect.append('<option value="' + item.nm_kategori + '">' + item
+                    .nm_kategori + '</option>');
+            });
+            klikAksiSelect.show();
+            klikkategSelect.hide();
+        } else if (selectedValue === 'produk') {
+            klikkategSelect.empty();
+            klikkategSelect.append('<option value="">Pilih Produk*</option>');
+            $.each(<?php echo json_encode($kat_produk); ?>, function(index, item) {
+                klikkategSelect.append('<option value="' + item.id_jp + '">' + item
+                    .nm_jp + '</option>');
+            });
+            klikkategSelect.show();
+            klikAksiSelect.hide();
+        } else {
+            klikkategSelect.hide();
+        }
+    });
 });
+
+
 // akhir foto bannerr select //////////////////////////////////////////////////////////////////////////////////////////////////
 
 const Toast = Swal.mixin({
@@ -623,6 +709,9 @@ $("#btn-simpan-foto-banner").submit(function(e) {
     var id_banner = $("#id-banner").find(':selected').val();
     var kategori = $("#kategory").find(':selected').val();
     var layout = $("#layout").find(':selected').val();
+    var klik_ke = $("#klik-ke").find(':selected').val();
+    var klik_kategori = $("#klik-kategori").find(':selected').val();
+    var klik_aksi = $("#klik-aksi").find(':selected').val();
     const foto_ban = $('#foto').prop('files')[0];
 
     if (id_banner == '0') {
@@ -639,6 +728,9 @@ $("#btn-simpan-foto-banner").submit(function(e) {
         formData.append('kategori', $('#kategory').val());
         formData.append('foto_banner', foto_ban);
         formData.append('layout', $('#layout').val());
+        formData.append('klik_ke', $('#klik-ke').val());
+        formData.append('kategori', $('#klik-kategori').val());
+        formData.append('id_produk', $('#klik-aksi').val());
         formData.append('fotolama', $('#fotolama').val());
 
         $.ajax({
@@ -674,80 +766,81 @@ $("#btn-simpan-foto-banner").submit(function(e) {
     }
 });
 
+
 // edit banner
-$('.loader-insert-foto').hide();
-$("#btn-simpan-foto-banner").on('submit', function(e) {
-    e.preventDefault();
-    var id_banner = $("#id_banner").val();
-    var val_ceklis_banner = $('#val-ceklis-banner').val();
-    var kategori = $("#kategory").find(':selected').val();
-    var layout = $("#layout").find(':selected').val();
-    var foto = $('#foto')[0].files[0];
+// $('.loader-insert-foto').hide();
+// $("#btn-simpan-foto-banner").on('submit', function(e) {
+//     e.preventDefault();
+//     var id_banner = $("#id_banner").val();
+//     var val_ceklis_banner = $('#val-ceklis-banner').val();
+//     var kategori = $("#kategory").find(':selected').val();
+//     var layout = $("#layout").find(':selected').val();
+//     var foto = $('#foto')[0].files[0];
 
-    if (id_banner == '0') {
-        Toast.fire({
-            type: 'error',
-            title: 'Jenis produk tidak boleh kosong!!'
-        });
-    } else {
-        $("#submit-simpan-banner").attr('disabled', true);
-        $('.loader-insert-foto').show();
+//     if (id_banner == '0') {
+//         Toast.fire({
+//             type: 'error',
+//             title: 'Jenis produk tidak boleh kosong!!'
+//         });
+//     } else {
+//         $("#submit-simpan-banner").attr('disabled', true);
+//         $('.loader-insert-foto').show();
 
-        var formData = new FormData();
-        formData.append('id_banner', id_banner);
-        formData.append('kategori', $('#kategory').val());
-        formData.append('foto_banner', foto);
-        formData.append('layout', $('#layout').val());
-        formData.append('fotolama', $('#fotolama').val());
+//         var formData = new FormData();
+//         formData.append('id_banner', id_banner);
+//         formData.append('kategori', $('#kategory').val());
+//         formData.append('foto_banner', foto);
+//         formData.append('layout', $('#layout').val());
+//         formData.append('fotolama', $('#fotolama').val());
 
-        if (val_ceklis_banner == 'edit-fotben') {
-            $.ajax({
-                type: 'POST',
-                url: "<?php echo site_url('Olah_data/edit_foto_banner'); ?>",
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function(msg) {
-                    Toast.fire({
-                        type: 'success',
-                        title: 'Banner berhasil di update'
-                    });
-                    $("#submit-simpan-banner").removeAttr('disabled', true);
-                    $('.loader-insert-foto').hide();
-                    $('#ceklis-ubah-fotban').prop('checked', false);
-                    $('#form-foto-banner').attr('hidden', true);
-                    load_data_fotban();
-                },
-                error: function() {
-                    alert("Data Gagal Simpan");
-                }
-            });
-        } else {
-            $.ajax({
-                type: 'POST',
-                url: "<?php echo site_url('Olah_data/edit_fotobanner'); ?>",
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    Toast.fire({
-                        type: 'success',
-                        title: 'Foto berhasil di update'
-                    });
-                    $("#submit-simpan-banner").removeAttr('disabled', true);
-                    $('.loader-insert-foto').hide();
-                    $('#form-foto-banner').attr('hidden', true);
-                    load_data_fotban();
-                },
-                error: function() {
-                    alert("Data Gagal UPdate");
-                }
-            });
-        }
-    }
-});
+//         if (val_ceklis_banner == 'edit-fotben') {
+//             $.ajax({
+//                 type: 'POST',
+//                 url: "<?php echo site_url('Olah_data/edit_foto_banner'); ?>",
+//                 data: formData,
+//                 cache: false,
+//                 processData: false,
+//                 contentType: false,
+//                 success: function(msg) {
+//                     Toast.fire({
+//                         type: 'success',
+//                         title: 'Banner berhasil di update'
+//                     });
+//                     $("#submit-simpan-banner").removeAttr('disabled', true);
+//                     $('.loader-insert-foto').hide();
+//                     $('#ceklis-ubah-fotban').prop('checked', false);
+//                     $('#form-foto-banner').attr('hidden', true);
+//                     load_data_fotban();
+//                 },
+//                 error: function() {
+//                     alert("Data Gagal Simpan");
+//                 }
+//             });
+//         } else {
+//             $.ajax({
+//                 type: 'POST',
+//                 url: "<?php echo site_url('Olah_data/edit_fotobanner'); ?>",
+//                 data: formData,
+//                 cache: false,
+//                 processData: false,
+//                 contentType: false,
+//                 success: function(response) {
+//                     Toast.fire({
+//                         type: 'success',
+//                         title: 'Foto berhasil di update'
+//                     });
+//                     $("#submit-simpan-banner").removeAttr('disabled', true);
+//                     $('.loader-insert-foto').hide();
+//                     $('#form-foto-banner').attr('hidden', true);
+//                     load_data_fotban();
+//                 },
+//                 error: function() {
+//                     alert("Data Gagal UPdate");
+//                 }
+//             });
+//         }
+//     }
+// });
 // akhir edit bannerr
 
 $(document).on("click", ".pilih-fot-banner", function() {

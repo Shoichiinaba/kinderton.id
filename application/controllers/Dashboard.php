@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller
 		$data['data_ketegori'] = $this->m_dashboard->m_data_kategori();
 		$data['etalase'] = $this->m_dashboard->etalase();
 		$data['slide'] = $this->m_dashboard->slide();
+		$data['slide_prod'] = $this->m_dashboard->slide_prod();
 		$this->load->view('layout/index', $data);
 		$this->load->view('layout/footer');
 	}

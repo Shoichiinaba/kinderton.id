@@ -23,6 +23,7 @@ class Olah_data extends CI_Controller
 			$data['_script'] = 'olah_data/olah_data_js';
 			$data['_view'] = 'olah_data/olah_data';
 			$data['kat_select'] = $this->m_olah_data->m_get_kategori();
+			$data['kat_produk'] = $this->m_olah_data->m_get_produk();
 			$data['jenis_produk'] = $this->m_olah_data->m_list_jenis_produk();
 			$data['kategori'] = $this->m_olah_data->m_get_kategori();
 			$this->load->view('layout/index', $data);
@@ -413,9 +414,12 @@ class Olah_data extends CI_Controller
             $data = array('upload_data' => $this->upload->data());
 
             $id_banner = $this->input->post('id_banner');
-            $kategori = $this->input->post('kategori');
             $foto = $data['upload_data']['file_name'];
             $layout = $this->input->post('layout');
+			$klik_ke = $this->input->post('klik_ke');
+            $kategori = $this->input->post('kategori');
+			// $klik_kategori = $this->input->post('kategori');
+			$klik_aksi = $this->input->post('id_produk');
             $uploadedImage = $this->upload->data();
 
             if ($layout == 'banner') {
@@ -425,7 +429,7 @@ class Olah_data extends CI_Controller
             }
 
             // $this->load->model('m_olah_data');
-            $insert = $this->m_olah_data->m_simpan_banner($id_banner, $kategori, $foto, $layout);
+            $insert = $this->m_olah_data->m_simpan_banner($id_banner, $layout, $foto, $kategori, $klik_ke, $klik_aksi);
 
             if ($insert) {
                 echo json_encode(array('success' => true, 'message' => 'Foto Banner Berhasil di Simpan'));

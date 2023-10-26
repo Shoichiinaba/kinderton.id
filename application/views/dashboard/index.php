@@ -1,4 +1,5 @@
 <main>
+    <!--slide -->
     <!-- tampilan dekstop -->
     <div class="d-md-block d-none">
         <div id="carousel-home" style="height: 32rem;">
@@ -10,7 +11,6 @@
                 <div class="owl-slide">
                     <img class="slider-image"
                         src="<?php echo base_url('upload/banner'); ?>/<?php echo $slides->foto; ?>" alt="Slider Image">
-
                     <div class="opacity-mask d-flex align-items-center">
                         <div class="container">
                             <div class="row justify-content-center justify-content-md-end">
@@ -35,6 +35,37 @@
                 <!--/owl-slide-->
                 <?php
                     }
+                ?>
+                <!-- untuk klik per produck -->
+                <?php
+                    foreach ($slide_prod as $prod) {
+                        $nm_jp = $prod->nm_jp;
+                        $nm_produk = preg_replace("![^a-z0-9]+!i", "-", $nm_jp);
+                ?>
+
+                <div class="owl-slide cover"
+                    style="background-image: url(<?php echo base_url('upload/banner'); ?>/<?php echo $prod->foto; ?>);">
+                    <div class="opacity-mask d-flex align-items-center">
+                        <div class="container">
+                            <div class="row justify-content-center justify-content-md-end">
+                                <div class="col-lg-6 static">
+                                    <div class="slide-text text-right white">
+                                        <h2 class="owl-slide-animated owl-slide-title">
+                                            <?php echo $prod->nm_jp; ?></h2>
+                                        <p class="owl-slide-animated owl-slide-subtitle">
+                                        </p>
+                                        <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
+                                                href="<?php echo base_url(); ?>detail_produk/data/<?php echo $prod->id_jp; ?>/<?php echo $nm_produk; ?>"
+                                                role="button">Shop Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                        }
+                    // }
                 ?>
             </div>
             <div id="icon_drag_mobile"></div>
@@ -73,6 +104,8 @@
         ?>
     </div>
     <!-- akhir tampilan mobile -->
+    <!-- akhir slide -->
+
 
     <!--Etalase -->
     <!-- dekstop -->

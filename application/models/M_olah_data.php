@@ -62,6 +62,14 @@ class M_olah_data extends CI_Model
         return $query->result();
     }
 
+    function m_get_produk()
+    {
+        $this->db->select('*');
+        $this->db->from('jenis_produk');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
     function m_simpan_jenis_produk($data)
     {
@@ -226,14 +234,17 @@ class M_olah_data extends CI_Model
         $hasil = $this->db->query("DELETE FROM foto_banner WHERE id_banner='$id_banner'");
         return $hasil;
     }
-    public function m_simpan_banner($id_banner, $kategori, $foto, $layout)
+    public function m_simpan_banner($id_banner, $kategori, $foto, $layout, $klik_ke, $klik_aksi)
     {
 
         $data = array(
             'id_banner' => $id_banner,
-            'kategori' => $kategori,
             'foto' => $foto,
-            'layout' => $layout
+            'layout' => $layout,
+            'kategori' => $kategori,
+            // 'kategori' => $klik_kategori,
+            'klik_ke' => $klik_ke,
+            'id_produk' => $klik_aksi
         );
 
         $this->db->insert('foto_banner', $data);
