@@ -51,12 +51,12 @@
                                 <div class="col-lg-6 static">
                                     <div class="slide-text text-right white">
                                         <h2 class="owl-slide-animated owl-slide-title">
-                                            <?php echo $prod->nm_jp; ?></h2>
-                                        <p class="owl-slide-animated owl-slide-subtitle">
-                                        </p>
-                                        <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                                href="<?php echo base_url(); ?>detail_produk/data/<?php echo $prod->id_jp; ?>/<?php echo $nm_produk; ?>"
-                                                role="button">Shop Now</a></div>
+                                            <!-- <?php echo $prod->nm_jp; ?></h2> -->
+                                            <p class="owl-slide-animated owl-slide-subtitle">
+                                            </p>
+                                            <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
+                                                    href="<?php echo base_url(); ?>detail_produk/data/<?php echo $prod->id_jp; ?>/<?php echo $nm_produk; ?>"
+                                                    role="button">Shop Now</a></div>
                                     </div>
                                 </div>
                             </div>

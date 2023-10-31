@@ -442,30 +442,32 @@
                                                         <select class="form-control" id="layout" name="layout"
                                                             required="true">
                                                             <option value="">Pilih Layout*</option>
-                                                            <option data-id="banner" value="banner">Banner</option>
-                                                            <option data-id="etalase" value="etalase">Etalase</option>
+                                                            <option data-id="banner" value="Banner">Banner</option>
+                                                            <option data-id="etalase" value="Etalase">Etalase</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label id="kategoriLabel">Kategori</label>
-                                                        <select class="form-control" id="kategory" name="kategori">
-                                                            <option value="">Pilih Layout Dulu*</option>
-                                                        </select>
-                                                        <label id="aksiLabel">Aksi</label>
-                                                        <select class="form-control" id="klik-ke" name="klik_ke">
+                                                        <select class="form-control" id="kategory" name="kategory">
                                                             <option value="">Pilih Layout Dulu*</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <select class="form-control" id="klik-kategori" name="kategori">
-                                                            <option value="">Pilih klik aksi Dulu*</option>
+                                                        <label id="klikkelabel">Klik ke</label>
+                                                        <select class="form-control" id="klik-ke" name="klik_ke">
+                                                            <option value="">Pilih*</option>
                                                         </select>
-                                                        <select class=" form-control" id="klik-aksi" name="id_produk">
-                                                            <option value="">Pilih klik aksi Dulu*</option>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label id="produkLabel">Produk</label>
+                                                        <select class="form-control" id="produk" name="produk">
+                                                            <option value="">Pilih*</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -502,6 +504,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div id="form-foto-quote" hidden>
                     <div class="box_account">
                         <div class="form_container">

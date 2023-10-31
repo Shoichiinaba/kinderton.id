@@ -576,120 +576,94 @@ $(document).ready(function() {
 });
 
 // foto bannerr select //////////////////////////////////////////////////////////////////////////////////////////////////
-var katSelectData = <?php echo json_encode($kat_select); ?>;
-var katSelectDatap = <?php echo json_encode($kat_produk); ?>;
+$('#klik-ke').hide();
+$('#produk').hide();
+$('#produkLabel').hide();
+$('#kategoriLabel').hide();
+$('#kategory').hide();
+$('#klikkelabel').hide();
 
-// $('#layout').change(function() {
-//     var selectedValue = $(this).val();
-//     var kategoriSelect = $('#kategory');
-//     var kategoriLabel = $('#kategoriLabel');
-
-//     if (selectedValue === 'banner') {
-//         kategoriLabel.text('Kategori Banner');
-//         kategoriSelect.empty();
-
-//         kategoriSelect.append('<option value="">Pilih Kategori Banner*</option>');
-
-//         $.each(<?php echo json_encode($kat_select); ?>, function(index, item) {
-//             kategoriSelect.append('<option value="' + item.nm_kategori + '">' + item.nm_kategori +
-//                 '</option>');
-//         });
-
-//     } else if (selectedValue === 'etalase') {
-//         kategoriLabel.text('Kategori Etalase');
-//         kategoriSelect.html('<option value="">Pilih Kategori Etalase*</option>' +
-//             '<option value="girl">Girl</option>' +
-//             '<option value="boy">Boys</option>' +
-//             '<option value="adult">Adult</option>');
-//     } else {
-//         kategoriLabel.text('Kategori');
-//         kategoriSelect.html('<option value="">Pilih Kategori*</option>');
-//     }
-// });
-
-$(document).ready(function() {
-    var kategoriSelect = $('#kategory');
-    var aksiSelect = $('#klik-ke');
+$('#layout').change(function() {
+    var selectedValue = $(this).val();
     var kategoriLabel = $('#kategoriLabel');
-    var aksiLabel = $('#aksiLabel');
-    var klikAksiSelect = $('#klik-aksi');
-    var klikkategSelect = $('#klik-kategori');
-    var klikLabel = $('#klikLabel');
+    var kategoriSelect = $('#kategory');
+    var kategorike = $('#klik-ke');
+    var produk = $('#produk');
+    var produklabel = $('#produkLabel');
+    var kategoriLabel = $('#kategoriLabel');
+    var klikkelabel = $('#klikkelabel');
 
-    aksiSelect.hide();
-    kategoriSelect.hide();
-    kategoriLabel.hide();
-    klikAksiSelect.hide();
-    aksiLabel.hide();
-    klikLabel.hide();
-    klikkategSelect.hide();
+    if (selectedValue === 'Banner') {
+        kategoriLabel.text('Kategori Banner');
+        $('#klik-ke').html('<option value="">Pilih Banner*</option>' +
+            '<option value="kategori">Kategori*</option>' +
+            '<option value="produk">Produk</option>');
 
-    $('#layout').change(function() {
-        var selectedValue = $(this).val();
+        klikkelabel.show();
+        kategorike.show();
+        kategoriLabel.hide();
+        kategoriSelect.hide();
+        produklabel.hide();
+        produk.hide();
 
-        if (selectedValue === 'banner') {
-            aksiLabel.text('Pilih Klik Ke');
-            aksiSelect.empty();
-            aksiSelect.show();
-            aksiLabel.show();
-            aksiSelect.html('<option value="">Pilih Klik Aksi*</option>' +
-                '<option value="kategori">Kategori</option>' +
-                '<option value="produk">Produk</option>');
+    } else if (selectedValue === 'Etalase') {
+        kategoriLabel.text('Kategori Etalase');
+        $('#kategory').html('<option value="">Pilih Kategori Etalase*</option>' +
+            '<option value="girl">Girl</option>' +
+            '<option value="boy">Boys</option>' +
+            '<option value="adult">Adult</option>');
 
-            kategoriSelect.hide();
-            klikAksiSelect.hide();
-            klikLabel.hide();
-            kategoriLabel.hide();
-        } else if (selectedValue === 'etalase') {
-            kategoriLabel.text('Kategori Etalase');
-            kategoriSelect.show();
-            kategoriLabel.show();
-            kategoriSelect.html('<option value="">Pilih Kategori Etalase*</option>' +
-                '<option value="girl">Girl</option>' +
-                '<option value="boy">Boys</option>' +
-                '<option value="adult">Adult</option>');
+        kategoriLabel.show();
+        kategoriSelect.show();
+        klikkelabel.hide();
+        kategorike.hide();
+        produklabel.hide();
+        produk.hide();
+    } else {
 
-            aksiSelect.hide();
-            aksiLabel.hide();
-            klikAksiSelect.hide();
-            klikkategSelect.hide();
-        } else {
-            kategoriSelect.hide();
-            klikAksiSelect.hide();
-            aksiSelect.hide();
-            aksiLabel.hide();
-            klikLabel.hide();
-            klikkategSelect.hide();
-        }
-    });
-
-    $('#klik-ke').change(function() {
-        var selectedValue = $(this).val();
-
-        if (selectedValue === 'kategori') {
-            klikAksiSelect.empty();
-            klikAksiSelect.append('<option value="">Pilih Kategori*</option>');
-            $.each(<?php echo json_encode($kat_select); ?>, function(index, item) {
-                klikAksiSelect.append('<option value="' + item.nm_kategori + '">' + item
-                    .nm_kategori + '</option>');
-            });
-            klikAksiSelect.show();
-            klikkategSelect.hide();
-        } else if (selectedValue === 'produk') {
-            klikkategSelect.empty();
-            klikkategSelect.append('<option value="">Pilih Produk*</option>');
-            $.each(<?php echo json_encode($kat_produk); ?>, function(index, item) {
-                klikkategSelect.append('<option value="' + item.id_jp + '">' + item
-                    .nm_jp + '</option>');
-            });
-            klikkategSelect.show();
-            klikAksiSelect.hide();
-        } else {
-            klikkategSelect.hide();
-        }
-    });
+    }
 });
 
+$('#klik-ke').change(function() {
+    var selectedValue = $(this).val();
+    if (selectedValue === 'kategori') {
+        $.ajax({
+            url: "<?php echo site_url('Olah_data/select_categori'); ?>",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                $('#kategory').html(data)
+                $('#kategoriLabel').show();
+                $('#kategory').show();
+                $('#produkLabel').hide();
+                $('#produk').hide();
+            },
+            error: function() {
+                alert("Data Gagal Diupload");
+            },
+        });
+
+    } else if (selectedValue === 'produk') {
+        $.ajax({
+            url: "<?php echo site_url('Olah_data/select_prod'); ?>",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                $('#produk').html(data)
+                $('#produkLabel').show();
+                $('#produk').show();
+                $('#kategoriLabel').hide();
+                $('#kategory').hide();
+            },
+
+            error: function() {
+                alert("Data Gagal Diupload");
+            },
+        });
+    }
+});
 
 // akhir foto bannerr select //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -705,13 +679,13 @@ const Toast = Swal.mixin({
 $('.loader-insert-foto').hide();
 $("#btn-simpan-foto-banner").submit(function(e) {
     e.preventDefault();
+
     var val_submit = $("#btn-simpan-foto-banner").val();
     var id_banner = $("#id-banner").find(':selected').val();
-    var kategori = $("#kategory").find(':selected').val();
     var layout = $("#layout").find(':selected').val();
+    var kategori = $("#kategory").find(':selected').val();
     var klik_ke = $("#klik-ke").find(':selected').val();
-    var klik_kategori = $("#klik-kategori").find(':selected').val();
-    var klik_aksi = $("#klik-aksi").find(':selected').val();
+    var produk = $("#produk").find(':selected').val();
     const foto_ban = $('#foto').prop('files')[0];
 
     if (id_banner == '0') {
@@ -724,13 +698,13 @@ $("#btn-simpan-foto-banner").submit(function(e) {
         $('.loader-insert-foto').show();
 
         let formData = new FormData();
+
         formData.append('id_banner', id_banner);
-        formData.append('kategori', $('#kategory').val());
-        formData.append('foto_banner', foto_ban);
         formData.append('layout', $('#layout').val());
-        formData.append('klik_ke', $('#klik-ke').val());
-        formData.append('kategori', $('#klik-kategori').val());
-        formData.append('id_produk', $('#klik-aksi').val());
+        formData.append('foto_banner', foto_ban);
+        formData.append('kategory', kategori);
+        formData.append('klik_ke', klik_ke);
+        formData.append('id_produk', produk);
         formData.append('fotolama', $('#fotolama').val());
 
         $.ajax({
